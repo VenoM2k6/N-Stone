@@ -1,4 +1,4 @@
-program Prototype1;
+program prototype1;
 
 {$mode objfpc}{$H+}
 
@@ -10,7 +10,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, code1
+  Forms, Unit1, Unit2
   { you can add units after this };
 
 {$R *.res}
@@ -20,6 +20,7 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(Tingame, ingame);
   Application.Run;
 end.
 
