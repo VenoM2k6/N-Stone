@@ -1,0 +1,28 @@
+object menu: Tmenu
+  Left = 559
+  Height = 240
+  Top = 428
+  Width = 320
+  Caption = 'Menu'
+  ClientHeight = 240
+  ClientWidth = 320
+  LCLVersion = '2.2.4.0'
+  object startButton: TButton
+    Left = 136
+    Height = 25
+    Top = 80
+    Width = 75
+    Caption = 'Start'
+    OnClick = startButtonClick
+    TabOrder = 0
+  end
+  object exitButton: TButton
+    Left = 136
+    Height = 25
+    Top = 112
+    Width = 75
+    Caption = 'Exit'
+    OnClick = exitButtonClick
+    TabOrder = 1
+  end
+end

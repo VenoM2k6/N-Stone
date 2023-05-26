@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="C:\lazarus\fpc\3.2.2\bin\x86_64-win64\fpc.exe" Date="1429740242"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -gw2 -godwarfsets -gl -WG -l -vewnhibq -FiC:\Users\meist\Desktop\N-Stone\Prototype\lib\x86_64-win64 -FuC:\Users\meist\Desktop\N-Stone\Prototype\Prototype -FuC:\lazarus\lcl\units\x86_64-win64\win32 -FuC:\lazarus\lcl\units\x86_64-win64 -FuC:\lazarus\components\freetype\lib\x86_64-win64 -FuC:\lazarus\components\lazutils\lib\x86_64-win64 -FuC:\lazarus\packager\units\x86_64-win64 -FuC:\Users\meist\Desktop\N-Stone\Prototype\ -FUC:\Users\meist\Desktop\N-Stone\Prototype\lib\x86_64-win64\ -FEC:\Users\meist\Desktop\N-Stone\Prototype\ -oC:\Users\meist\Desktop\N-Stone\Prototype\prototype1.exe -dLCL -dLCLwin32 prototype1.lpr"/>
+</CONFIG>
