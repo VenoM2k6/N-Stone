@@ -45,7 +45,7 @@ implementation
 
 procedure Tingame.FormShow(Sender: TObject);
 begin
-    {Kurze Erklärung des Codes: Jede einzelne Anzeige skaliert mit einem Anteil der Bildschirmgröße.
+   {Kurze Erklärung des Codes: Jede einzelne Anzeige skaliert mit einem Anteil der Bildschirmgröße.
                                 Schriftgrößen hingegen skalieren mit dem Anteil der Höhen ihres Editfelds}
 
     //Bildschirmgröße wird erfasst

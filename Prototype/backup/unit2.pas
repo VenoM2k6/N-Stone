@@ -45,7 +45,8 @@ implementation
 
 procedure Tingame.FormShow(Sender: TObject);
 begin
-    {Kurze Erklärung des Codes: Jede einzelne Anzeige skaliert mit einem Anteil der Bildschirmgröße.
+    hpplayer1.text:=inttostr(Player1.Hp);
+   {Kurze Erklärung des Codes: Jede einzelne Anzeige skaliert mit einem Anteil der Bildschirmgröße.
                                 Schriftgrößen hingegen skalieren mit dem Anteil der Höhen ihres Editfelds}
 
     //Bildschirmgröße wird erfasst
@@ -65,7 +66,7 @@ begin
     player1Show.height:=Round(currentHeight*0.075);
     player1Show.width:=background.width;
 
-    player2Show.top:=Round(currentHeight*0.885);
+    player2Show.top:=Round(currentHeight*0.895);
     player2Show.left:=background.left;
     player2Show.height:=Round(currentHeight*0.075);
     player2Show.width:=background.width;

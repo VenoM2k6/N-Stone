@@ -1,7 +1,7 @@
 object ingame: Tingame
-  Left = 582
+  Left = 534
   Height = 941
-  Top = 225
+  Top = 268
   Width = 1226
   BorderStyle = bsNone
   Caption = 'Ingame'
@@ -586,6 +586,6 @@ object ingame: Tingame
     ParentFont = False
     ReadOnly = True
     TabOrder = 8
-    Text = 'Vincent'
+    Text = 'Sahil'
   end
 end
