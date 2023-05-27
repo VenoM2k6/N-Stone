@@ -23,33 +23,33 @@ object ingame: Tingame
     Height = 50
     Top = 120
     Width = 640
-    Color = clHighlight
-    ParentColor = False
     TabOrder = 1
+    Visible = False
   end
   object player2Show: TPanel
     Left = 288
     Height = 50
     Top = 568
     Width = 640
-    Color = clHighlight
-    ParentColor = False
     TabOrder = 2
+    Visible = False
   end
   object hpplayer1: TEdit
     Left = 776
     Height = 37
     Top = 32
     Width = 150
+    AutoSize = False
     BorderStyle = bsNone
-    Color = clRed
     Enabled = False
     Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
     Font.Height = -27
     Font.Name = '@Malgun Gothic'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold, fsItalic]
+    ParentColor = True
     ParentFont = False
     ReadOnly = True
     TabOrder = 3
@@ -60,15 +60,17 @@ object ingame: Tingame
     Height = 37
     Top = 80
     Width = 150
+    AutoSize = False
     BorderStyle = bsNone
-    Color = clAqua
     Enabled = False
     Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
     Font.Height = -27
     Font.Name = '@Malgun Gothic'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold, fsItalic]
+    ParentColor = True
     ParentFont = False
     ReadOnly = True
     TabOrder = 4
@@ -79,15 +81,17 @@ object ingame: Tingame
     Height = 37
     Top = 624
     Width = 150
+    AutoSize = False
     BorderStyle = bsNone
-    Color = clRed
     Enabled = False
     Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
     Font.Height = -27
     Font.Name = '@Malgun Gothic'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold, fsItalic]
+    ParentColor = True
     ParentFont = False
     ReadOnly = True
     TabOrder = 5
@@ -98,15 +102,17 @@ object ingame: Tingame
     Height = 37
     Top = 672
     Width = 150
+    AutoSize = False
     BorderStyle = bsNone
-    Color = clAqua
     Enabled = False
     Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
     Font.Height = -27
     Font.Name = '@Malgun Gothic'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold, fsItalic]
+    ParentColor = True
     ParentFont = False
     ReadOnly = True
     TabOrder = 6
@@ -542,12 +548,11 @@ object ingame: Tingame
   end
   object usernameshow1: TEdit
     Left = 288
-    Height = 45
-    Top = 125
-    Width = 336
+    Height = 50
+    Top = 120
+    Width = 368
     AutoSize = False
     BorderStyle = bsNone
-    Color = clMenuHighlight
     Enabled = False
     Font.CharSet = ANSI_CHARSET
     Font.Color = clWhite
@@ -556,8 +561,31 @@ object ingame: Tingame
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     Font.Style = [fsBold]
+    ParentColor = True
     ParentFont = False
     ReadOnly = True
     TabOrder = 7
+    Text = 'Vincent'
+  end
+  object usernameshow2: TEdit
+    Left = 288
+    Height = 50
+    Top = 568
+    Width = 368
+    AutoSize = False
+    BorderStyle = bsNone
+    Enabled = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -32
+    Font.Name = '@Malgun Gothic'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = True
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 8
+    Text = 'Vincent'
   end
 end

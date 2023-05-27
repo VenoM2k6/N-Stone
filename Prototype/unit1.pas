@@ -5,7 +5,7 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Unit2;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Unit3;
 
 type
 
@@ -33,7 +33,7 @@ implementation
 
 procedure Tmenu.startButtonClick(Sender: TObject);
 begin
-   ingame.Show;
+   choose.Show;
    hide;
 end;
 

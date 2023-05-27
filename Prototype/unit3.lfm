@@ -1,0 +1,8 @@
+object choose: Tchoose
+  Left = 1384
+  Height = 591
+  Top = 224
+  Width = 592
+  Caption = 'Choose Menu'
+  LCLVersion = '2.2.4.0'
+end

@@ -15,7 +15,6 @@ type
     startButton: TButton;
     exitButton: TButton;
     procedure exitButtonClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure startButtonClick(Sender: TObject);
   private
 
@@ -34,7 +33,7 @@ implementation
 
 procedure Tmenu.startButtonClick(Sender: TObject);
 begin
-   ingame.Show;
+   choose.Show;
    hide;
 end;
 
@@ -42,11 +41,5 @@ procedure Tmenu.exitButtonClick(Sender: TObject);
 begin
   close;
 end;
-
-procedure Tmenu.FormCreate(Sender: TObject);
-begin
-
-end;
-
 end.
 

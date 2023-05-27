@@ -6,7 +6,6 @@ object menu: Tmenu
   Caption = 'Menu'
   ClientHeight = 240
   ClientWidth = 320
-  OnCreate = FormCreate
   LCLVersion = '2.2.4.0'
   object startButton: TButton
     Left = 136
