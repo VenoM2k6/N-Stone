@@ -5,7 +5,7 @@ unit Unit2;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Playerclass;
 
 type
 
@@ -18,6 +18,7 @@ type
     manaplayer1: TEdit;
     hpplayer2: TEdit;
     manaplayer2: TEdit;
+    usernameshow1: TEdit;
     player1Show: TPanel;
     player2Show: TPanel;
     procedure FormShow(Sender: TObject);
@@ -30,7 +31,8 @@ type
 
 var
   ingame: Tingame;
-  startingWidth, widthDifference, currentHeight, currentWidth: integer;
+  i, currentHeight, currentWidth: integer;
+  Player1: TPlayerclass;
 
 implementation
 
@@ -42,14 +44,19 @@ implementation
 
 procedure Tingame.FormShow(Sender: TObject);
 begin
+    {Player1:=TPlayerclass.Create;
+    Player1.Name:='Vincent';
+    Player1.Mana:=100;
+    Player1.Hp:=150;
+
+    hpplayer1.Text:=hpplayer1.text + inttostr(Player1.Hp); }
+
     WindowState := wsFullScreen;
     currentHeight := Screen.Height;
     currentWidth := Screen.Width;
-    startingWidth :=  1536; {Ich habe hier die Werte meiner Laptop Auflösung genommen. Es skaliert sich jetzt nur noch hoch}
-
     background.top:=Round(currentHeight*0.125);
     background.left:=Round(currentWidth*0.1);
-    background.Height:=Round(currentHeight*0.75);
+    background.Height:=Round(currentHeight*0.7);
     background.width:=Round(currentWidth*0.8);
 
     player1Show.top:=Round(currentHeight*0.05);
@@ -62,22 +69,41 @@ begin
     player2Show.height:=Round(currentHeight*0.075);
     player2Show.width:=background.width;
 
+    //Positionierung der Lebens- und Manaskala
     hpplayer1.top:=player1Show.top;
-    hpplayer1.left:=Round(currentWidth*0.7);
+    hpplayer1.left:=Round(currentWidth*0.6);
     manaplayer1.top:=hpplayer1.top;
-    manaplayer1.left:=Round(currentWidth*0.8);
-
-    widthdifference:=Round(startingWidth/background.width);
-    hpplayer1.font.size := Round(hpplayer1.font.size*Widthdifference);
-    manaplayer1.font.size := Round(hpplayer1.font.size*Widthdifference);
+    manaplayer1.left:=Round(currentWidth*0.75);
 
     hpplayer2.top:=player2Show.top;
-    hpplayer2.left:=Round(currentWidth*0.7);
+    hpplayer2.left:=hpplayer1.left;
     manaplayer2.top:=hpplayer2.top;
-    manaplayer2.left:=Round(currentWidth*0.8);
+    manaplayer2.left:=manaplayer1.left;
 
-    hpplayer2.font.size := Round(hpplayer1.font.size*Widthdifference);
-    manaplayer2.font.size := Round(hpplayer1.font.size*Widthdifference);
+    //Schleife für die automatische Skalierung der Skalen
+    i:=0;
+    repeat
+       i:=i+1;
+       hpplayer1.font.size:=i;
+       hpplayer2.font.size:=i;
+       manaplayer1.font.size:=i;
+       manaplayer2.font.size:=i;
+
+    until hpplayer1.height=Round(player1Show.height*0.7);
+
+    hpplayer1.width:=manaplayer1.left-hpplayer1.left;
+    hpplayer2.width:=manaplayer2.left-hpplayer2.left;
+    manaplayer1.width:=Round(currentWidth*0.15);
+    manaplayer2.width:=Round(currentWidth*0.15);
+
+    exitImage.Top:=player1Show.top;
+
+    exitImage.Left:=Round(currentWidth*0.025);
+    exitImage.Width:=Round(currentWidth*0.05);
+    exitImage.Height:=Round(currentWidth*0.05);
+
+    usernameshow1.top:=player1Show.top;
+    usernameshow1.left:=player1Show.left;
 end;
 
 procedure Tingame.exitImageClick(Sender: TObject);

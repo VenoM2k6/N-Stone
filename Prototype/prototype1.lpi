@@ -49,6 +49,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit2"/>
       </Unit>
+      <Unit>
+        <Filename Value="playerclass.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Playerclass"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

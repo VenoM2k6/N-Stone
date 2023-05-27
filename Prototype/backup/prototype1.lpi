@@ -38,15 +38,21 @@
         <Filename Value="unit1.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="menu"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
       </Unit>
       <Unit>
-        <Filename Value="unit2.pas"/>
+        <Filename Value="Prototype\unit2.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ingame"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit2"/>
+      </Unit>
+      <Unit>
+        <Filename Value="playerclass.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Playerclass"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -58,6 +64,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="Prototype"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

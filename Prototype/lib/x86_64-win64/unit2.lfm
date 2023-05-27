@@ -1,52 +1,51 @@
 object ingame: Tingame
-  Left = 353
-  Height = 706
-  Top = 320
-  Width = 1533
+  Left = 582
+  Height = 941
+  Top = 225
+  Width = 1226
   BorderStyle = bsNone
   Caption = 'Ingame'
-  ClientHeight = 706
-  ClientWidth = 1533
-  DesignTimePPI = 120
+  ClientHeight = 941
+  ClientWidth = 1226
   OnShow = FormShow
-  LCLVersion = '2.2.6.0'
+  LCLVersion = '2.2.4.0'
   object background: TPanel
-    Left = 360
-    Height = 502
-    Top = 210
-    Width = 800
+    Left = 288
+    Height = 402
+    Top = 168
+    Width = 640
     Color = clInfoBk
     ParentColor = False
     TabOrder = 0
   end
   object player1Show: TPanel
-    Left = 360
-    Height = 62
-    Top = 150
-    Width = 800
+    Left = 288
+    Height = 50
+    Top = 120
+    Width = 640
     Color = clHighlight
     ParentColor = False
     TabOrder = 1
   end
   object player2Show: TPanel
-    Left = 360
-    Height = 62
-    Top = 710
-    Width = 800
+    Left = 288
+    Height = 50
+    Top = 568
+    Width = 640
     Color = clHighlight
     ParentColor = False
     TabOrder = 2
   end
   object hpplayer1: TEdit
-    Left = 970
-    Height = 46
-    Top = 40
-    Width = 188
+    Left = 776
+    Height = 37
+    Top = 32
+    Width = 150
     BorderStyle = bsNone
     Color = clRed
     Enabled = False
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -34
+    Font.Height = -27
     Font.Name = '@Malgun Gothic'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -57,15 +56,15 @@ object ingame: Tingame
     Text = 'HP:'
   end
   object manaplayer1: TEdit
-    Left = 972
-    Height = 46
-    Top = 100
-    Width = 188
+    Left = 776
+    Height = 37
+    Top = 80
+    Width = 150
     BorderStyle = bsNone
     Color = clAqua
     Enabled = False
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -34
+    Font.Height = -27
     Font.Name = '@Malgun Gothic'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -76,15 +75,15 @@ object ingame: Tingame
     Text = 'MANA: '
   end
   object hpplayer2: TEdit
-    Left = 972
-    Height = 46
-    Top = 780
-    Width = 188
+    Left = 778
+    Height = 37
+    Top = 624
+    Width = 150
     BorderStyle = bsNone
     Color = clRed
     Enabled = False
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -34
+    Font.Height = -27
     Font.Name = '@Malgun Gothic'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -92,18 +91,18 @@ object ingame: Tingame
     ParentFont = False
     ReadOnly = True
     TabOrder = 5
-    Text = 'HP'
+    Text = 'HP:'
   end
   object manaplayer2: TEdit
-    Left = 972
-    Height = 46
-    Top = 840
-    Width = 188
+    Left = 778
+    Height = 37
+    Top = 672
+    Width = 150
     BorderStyle = bsNone
     Color = clAqua
     Enabled = False
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -34
+    Font.Height = -27
     Font.Name = '@Malgun Gothic'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -114,10 +113,10 @@ object ingame: Tingame
     Text = 'MANA: '
   end
   object exitImage: TImage
-    Left = 50
-    Height = 110
-    Top = 140
-    Width = 200
+    Left = 40
+    Height = 88
+    Top = 112
+    Width = 160
     OnClick = exitImageClick
     Picture.Data = {
       1754506F727461626C654E6574776F726B477261706869631434000089504E47
@@ -540,5 +539,25 @@ object ingame: Tingame
       BA02AF8A0000000049454E44AE426082
     }
     Stretch = True
+  end
+  object usernameshow1: TEdit
+    Left = 288
+    Height = 45
+    Top = 125
+    Width = 336
+    AutoSize = False
+    BorderStyle = bsNone
+    Color = clMenuHighlight
+    Enabled = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -32
+    Font.Name = '@Malgun Gothic'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 7
   end
 end

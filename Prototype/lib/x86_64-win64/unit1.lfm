@@ -1,7 +1,7 @@
 object menu: Tmenu
-  Left = 559
+  Left = 821
   Height = 240
-  Top = 428
+  Top = 230
   Width = 320
   Caption = 'Menu'
   ClientHeight = 240

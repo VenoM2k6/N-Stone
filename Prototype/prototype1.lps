@@ -9,8 +9,8 @@
         <Filename Value="prototype1.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="141" Y="11"/>
-        <UsageCount Value="21"/>
+        <CursorPos X="15" Y="5"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -20,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <CursorPos X="3" Y="42"/>
-        <UsageCount Value="21"/>
+        <CursorPos X="48" Y="17"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -34,13 +34,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos X="43" Y="74"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="24"/>
+      </Unit>
+      <Unit>
+        <Filename Value="playerclass.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Playerclass"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="150" Y="24"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unit2.lfm"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
@@ -50,15 +58,21 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit2"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="72"/>
-        <CursorPos X="73" Y="80"/>
-        <UsageCount Value="11"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="68"/>
+        <CursorPos X="49" Y="97"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="unit1.lfm"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="5">
+    <JumpHistory HistoryIndex="24">
       <Position>
         <Filename Value="unit2.pas"/>
       </Position>
@@ -81,6 +95,82 @@
       <Position>
         <Filename Value="unit2.pas"/>
         <Caret Line="54" Column="24" TopLine="46"/>
+      </Position>
+      <Position>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="80" Column="75" TopLine="41"/>
+      </Position>
+      <Position>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="70" Column="41" TopLine="33"/>
+      </Position>
+      <Position>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="85" Column="36" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="playerclass.pas"/>
+        <Caret Line="12" Column="29"/>
+      </Position>
+      <Position>
+        <Filename Value="prototype1.lpr"/>
+        <Caret Line="13" Column="30"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Column="7"/>
+      </Position>
+      <Position>
+        <Filename Value="prototype1.lpr"/>
+        <Caret Line="13" Column="10"/>
+      </Position>
+      <Position>
+        <Filename Value="playerclass.pas"/>
+        <Caret Line="20" Column="26"/>
+      </Position>
+      <Position>
+        <Filename Value="unit2.pas"/>
+        <Caret Column="11"/>
+      </Position>
+      <Position>
+        <Filename Value="playerclass.pas"/>
+        <Caret Line="16" Column="16"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Column="11"/>
+      </Position>
+      <Position>
+        <Filename Value="playerclass.pas"/>
+        <Caret Line="18" Column="36"/>
+      </Position>
+      <Position>
+        <Filename Value="playerclass.pas"/>
+        <Caret Line="21" Column="15"/>
+      </Position>
+      <Position>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="45" Column="45" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="79" Column="63" TopLine="60"/>
+      </Position>
+      <Position>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="83" Column="4" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="78" Column="11" TopLine="55"/>
+      </Position>
+      <Position>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="85" Column="57" TopLine="60"/>
+      </Position>
+      <Position>
+        <Filename Value="unit2.pas"/>
+        <Caret Line="97" Column="16" TopLine="67"/>
       </Position>
     </JumpHistory>
     <RunParams>
