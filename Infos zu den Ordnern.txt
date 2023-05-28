@@ -1,5 +1,0 @@
-NICHTS in den Mainprogramordner packen !!! Programm könnte kaputt gehen nur Lazarus starten und über Larazus Dateien in diesem Ordner erstellen!
-
-Die anderen Ordner können ihrem zugespammt werden
-
-danke <3
