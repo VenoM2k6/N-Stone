@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 497
+  Left = 663
   Height = 1207
-  Top = 80
+  Top = 143
   Width = 1839
   Caption = 'Form1'
   ClientHeight = 1207
@@ -21,6 +21,7 @@ object Form1: TForm1
     Height = 266
     Top = 760
     Width = 242
+    DragMode = dmAutomatic
     OnMouseDown = Image1MouseDown
     OnMouseMove = Image1MouseMove
     OnMouseUp = Image1MouseUp
