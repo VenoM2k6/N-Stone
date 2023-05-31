@@ -177,7 +177,6 @@ object showIngame: TshowIngame
     DragCursor = crNone
     Enabled = False
     TabOrder = 16
-    Visible = False
   end
   object player2imagefield: TPanel
     Left = 576
@@ -187,7 +186,6 @@ object showIngame: TshowIngame
     DragCursor = crNone
     Enabled = False
     TabOrder = 17
-    Visible = False
   end
   object exitButton: TButton
     Left = 576

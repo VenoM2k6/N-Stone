@@ -1,7 +1,7 @@
 object showIngame: TshowIngame
-  Left = -2137
+  Left = 176
   Height = 1136
-  Top = 101
+  Top = 142
   Width = 1755
   BorderStyle = bsNone
   Caption = 'showIngame'

@@ -141,6 +141,10 @@ begin
     currentHeight:=Screen.height;
     currentWidth:=Screen.Width;
 
+    pullCards.Height := exitButton.height;
+    pullCards.Width := exitButton.width;
+    pullCards.Top := exitButton.top - exitButton.height;
+    pullCards.Left := exitButton.left;
     exitButton.Height := currentHeight div 12;
     exitButton.Width := currentWidth div 6 - Round(currentWidth*(1/12));
     exitButton.Top := Round(currentHeight*(10/12));
