@@ -12,14 +12,17 @@ type
   { TshowIngame }
 
   TshowIngame = class(TForm)
-    card1: TImage;
-    card2: TImage;
-    card3: TImage;
-    card4: TImage;
-    card5: TImage;
-    card6: TImage;
-    card7: TImage;
-    card8: TImage;
+    card1_1: TImage;
+    card1_2: TImage;
+    card1_3: TImage;
+    card1_4: TImage;
+    card2_1: TImage;
+    card2_2: TImage;
+    card2_3: TImage;
+    card2_4: TImage;
+    card1_6: TImage;
+    card1_7: TImage;
+    card1_5: TImage;
     pullCards: TButton;
     cardSlot1: TPanel;
     cardSlot2: TPanel;
@@ -40,53 +43,53 @@ type
     player2Slot2: TPanel;
     player2Slot3: TPanel;
     player2Slot4: TPanel;
-    procedure card1MouseDown(Sender: TObject; Button: TMouseButton;
+    procedure card1_1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
+    procedure card1_1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
       );
-    procedure card1MouseUp(Sender: TObject; Button: TMouseButton;
+    procedure card1_1MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card2MouseDown(Sender: TObject; Button: TMouseButton;
+    procedure card1_2MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card2MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
+    procedure card1_2MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
       );
-    procedure card2MouseUp(Sender: TObject; Button: TMouseButton;
+    procedure card1_2MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card3MouseDown(Sender: TObject; Button: TMouseButton;
+    procedure card1_3MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card3MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
+    procedure card1_3MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
       );
-    procedure card3MouseUp(Sender: TObject; Button: TMouseButton;
+    procedure card1_3MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card4MouseDown(Sender: TObject; Button: TMouseButton;
+    procedure card1_4MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card4MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
+    procedure card1_4MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
       );
-    procedure card4MouseUp(Sender: TObject; Button: TMouseButton;
+    procedure card1_4MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card5MouseDown(Sender: TObject; Button: TMouseButton;
+    procedure card2_1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card5MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
+    procedure card2_1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
       );
-    procedure card5MouseUp(Sender: TObject; Button: TMouseButton;
+    procedure card2_1MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card6MouseDown(Sender: TObject; Button: TMouseButton;
+    procedure card2_2MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card6MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
+    procedure card2_2MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
       );
-    procedure card6MouseUp(Sender: TObject; Button: TMouseButton;
+    procedure card2_2MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card7MouseDown(Sender: TObject; Button: TMouseButton;
+    procedure card2_3MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card7MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
+    procedure card2_3MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
       );
-    procedure card7MouseUp(Sender: TObject; Button: TMouseButton;
+    procedure card2_3MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card8MouseDown(Sender: TObject; Button: TMouseButton;
+    procedure card2_4MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure card8MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
+    procedure card2_4MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
       );
-    procedure card8MouseUp(Sender: TObject; Button: TMouseButton;
+    procedure card2_4MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure exitButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -99,11 +102,19 @@ type
 
 var
   showIngame: TshowIngame;
-  currentHeight, currentWidth: integer;  //Screengröße
-  i, j: integer;                         //Laufvariablen
-  picked: array[1..20] of boolean;       //Array of bool, um sicherzustellen, dass die Karten noch nd gezogen wurden
-  locked1, locked2, locked3, locked4: boolean; //Ob das Feld schon belegt ist
-  oldleft, oldtop: integer;                    //Alte Position eines Bildes um es zurückspringen zu lassen, wenn man das Spielbrett verfehlt
+  currentHeight, currentWidth: integer;  //Screenanpassung
+
+  a, b, c, j: integer;                         //Kartensortiersystem
+  cards1: array[1..7] of TImage;
+  cards2: array[1..5] of TImage;
+  cardscache: array[1..5] of TImage;
+
+  lockedslots2: array[1..4] of boolean;
+  lockedslots1: array[1..4] of boolean;
+
+  cache: TImage;
+
+  oldleft, oldtop: integer;                    //DragAndDrop
   lockedfield: array[1..8] of boolean;
 
   fixxed: boolean;
@@ -116,6 +127,25 @@ implementation
 
 procedure TshowIngame.FormCreate(Sender: TObject);
 begin
+    //Kartenset
+
+    lockedslots1[1]:=false;
+    lockedslots1[2]:=false;
+    lockedslots1[3]:=false;
+    lockedslots1[4]:=false;
+
+    cards1[1] := card1_1;  //Karten initialisieren
+    cards1[2] := card1_2;
+    cards1[3] := card1_3;
+    cards1[4] := card1_4;
+    cards1[5] := card1_5;
+    cards1[6] := card1_6;
+    cards1[7] := card1_7;
+
+    cards2[1] := card2_1;
+    cards2[2] := card2_2;
+    cards2[3] := card2_3;
+    cards2[4] := card2_4;
     //Abfrage fürs Platzieren
     lockedfield[1]:=false;
     lockedfield[2]:=false;
@@ -126,25 +156,21 @@ begin
     lockedfield[7]:=false;
     lockedfield[8]:=false;
 
-    //Abfrage fürs Kartenziehen
-    locked1 := false;
-    locked2 := false;
-    locked3 := false;
-    locked4 := false;
-
-    for j:=1 to 20 do begin
-       picked[j]:=false;
-    end;
-
     //Anzeige-Einstellungen
     WindowState := wsMaximized;
     currentHeight:=Screen.height;
     currentWidth:=Screen.Width;
 
+
     exitButton.Height := currentHeight div 12;
     exitButton.Width := currentWidth div 6 - Round(currentWidth*(1/12));
     exitButton.Top := Round(currentHeight*(10/12));
-    exitButton.Left := Round(currentWidth*(1/24));                              //Exitbutton
+    exitButton.Left := Round(currentWidth*(1/24));
+    //Exitbutton
+    pullCards.Height := exitButton.height;
+    pullCards.Width := exitButton.width;
+    pullCards.Top := exitButton.top - exitButton.height;
+    pullCards.Left := exitButton.left;
 
     player1Slot1.height := currentHeight div 6;
     player1Slot2.height := player1Slot1.height;
@@ -239,326 +265,91 @@ end;
 
 procedure TshowIngame.pullCardsClick(Sender: TObject);                          //Karten ziehen
 begin
-        pullCards.enabled:=false;
-        pullCards.visible:=false;
-        for i:=1 to 100 do begin  //Karten von Spieler 1
-          j := Random(5);
-          if (j = 1) and (picked[j] = false) and (locked1 = false)then begin     //Karte 1
-             card1.width := player1Slot1.width;
-             card1.height := player1Slot1.height;
-             card1.left := player1Slot1.left;
-             card1.top := player1Slot1.top;
-             picked[j] := true;
-             locked1 := true;
-             card1.visible:=true;
-          end;
-          if (j = 1) and (picked[j] = false) and (locked2 = false)then begin
-             card1.width := player1Slot2.width;
-             card1.height := player1Slot2.height;
-             card1.left := player1Slot2.left;
-             card1.top := player1Slot2.top;
-             picked[j] := true;
-             locked2 := true;
-             card1.visible:=true;
-          end;
-          if (j = 1) and (picked[j] = false) and (locked3 = false)then begin
-             card1.width := player1Slot3.width;
-             card1.height := player1Slot3.height;
-             card1.left := player1Slot3.left;
-             card1.top := player1Slot3.top;
-             picked[j] := true;
-             locked3 := true;
-             card1.visible:=true;
-           end;
-        if (j = 1) and (picked[j] = false) and (locked4 = false)then begin
-             card1.width := player1Slot4.width;
-             card1.height := player1Slot4.height;
-             card1.left := player1Slot4.left;
-             card1.top := player1Slot4.top;
-             picked[j] := true;
-             locked4 := true;
-             card1.visible:=true;
-           end;
 
-        if (j = 2) and (picked[j] = false) and (locked1 = false)then begin       //Karte 2
-             card2.width := player1Slot1.width;
-             card2.height := player1Slot1.height;
-             card2.left := player1Slot1.left;
-             card2.top := player1Slot1.top;
-             picked[j] := true;
-             locked1 := true;
-             card2.visible:=true;
-        end;
-        if (j = 2) and (picked[j] = false) and (locked2 = false)then begin
-             card2.width := player1Slot2.width;
-             card2.height := player1Slot2.height;
-             card2.left := player1Slot2.left;
-             card2.top := player1Slot2.top;
-             picked[j] := true;
-             locked2 := true;
-             card2.visible:=true;
-        end;
-        if (j = 2) and (picked[j] = false) and (locked3 = false)then begin
-             card2.width := player1Slot3.width;
-             card2.height := player1Slot3.height;
-             card2.left := player1Slot3.left;
-             card2.top := player1Slot3.top;
-             picked[j] := true;
-             locked3 := true;
-             card2.visible:=true;
-           end;
-       if (j = 2) and (picked[j] = false) and (locked4 = false)then begin
-             card2.width := player1Slot4.width;
-             card2.height := player1Slot4.height;
-             card2.left := player1Slot4.left;
-             card2.top := player1Slot4.top;
-             picked[j] := true;
-             locked4 := true;
-             card2.visible:=true;
-       end;
-       if (j = 3) and (picked[j] = false) and (locked1 = false)then begin        //Karte 3
-             card3.width := player1Slot1.width;
-             card3.height := player1Slot1.height;
-             card3.left := player1Slot1.left;
-             card3.top := player1Slot1.top;
-             picked[j] := true;
-             locked1 := true;
-             card3.visible:=true;
-           end;
-      if (j = 3) and (picked[j] = false) and (locked2 = false)then begin
-             card3.width := player1Slot2.width;
-             card3.height := player1Slot2.height;
-             card3.left := player1Slot2.left;
-             card3.top := player1Slot2.top;
-             picked[j] := true;
-             locked2 := true;
-             card3.visible:=true;
-           end;
-      if (j = 3) and (picked[j] = false) and (locked3 = false)then begin
-             card3.width := player1Slot3.width;
-             card3.height := player1Slot3.height;
-             card3.left := player1Slot3.left;
-             card3.top := player1Slot3.top;
-             picked[j] := true;
-             locked3 := true;
-             card3.visible:=true;
-           end;
-      if (j = 3) and (picked[j] = false) and (locked4 = false)then begin
-             card3.width := player1Slot4.width;
-             card3.height := player1Slot4.height;
-             card3.left := player1Slot4.left;
-             card3.top := player1Slot4.top;
-             picked[j] := true;
-             locked4 := true;
-             card3.visible:=true;
-           end;
+   Randomize;
+   for c := 7 downto 1 do
+     begin
+          j := Random(c+1);
+          cache := cards1[c];
+          cards1[c] := cards1[j];
+          cards1[j] := cache;
+   end;
+   for c := 4 downto 1 do
+     begin
+          j := Random(c+1);
+          cache := cards2[c];
+          cards2[c] := cards2[j];
+          cards2[j] := cache;
+     end;
 
-      if (j = 4) and (picked[j] = false) and (locked1 = false)then begin         //Karte 4
-             card4.width := player1Slot1.width;
-             card4.height := player1Slot1.height;
-             card4.left := player1Slot1.left;
-             card4.top := player1Slot1.top;
-             picked[j] := true;
-             locked1 := true;
-             card4.visible:=true;
-           end;
-     if (j = 4) and (picked[j] = false) and (locked2 = false)then begin
-             card4.width := player1Slot2.width;
-             card4.height := player1Slot2.height;
-             card4.left := player1Slot2.left;
-             card4.top := player1Slot2.top;
-             picked[j] := true;
-             locked2 := true;
-             card4.visible:=true;
-           end;
-     if (j = 4) and (picked[j] = false) and (locked3 = false)then begin
-             card4.width := player1Slot3.width;
-             card4.height := player1Slot3.height;
-             card4.left := player1Slot3.left;
-             card4.top := player1Slot3.top;
-             picked[j] := true;
-             locked3 := true;
-             card4.visible:=true;
-           end;
-    if (j = 4) and (picked[j] = false) and (locked4 = false)then begin
-             card4.width := player1Slot4.width;
-             card4.height := player1Slot4.height;
-             card4.left := player1Slot4.left;
-             card4.top := player1Slot4.top;
-             picked[j] := true;
-             locked4 := true;
-             card4.visible:=true;
-       end;
-    end;
-    locked1 := false;
-    locked2 := false;
-    locked3 := false;
-    locked4 := false;
-    picked[1] := false;
-    picked[2] := false;
-    picked[3] := false;
-    picked[4] := false;
-    //Hier bitte nicht was ändern
-    //Man kann den Code beliebig groß erweitern
-
-    for i:=1 to 100 do begin  //Karten von Spieler 1
-          j := Random(5);
-          if (j = 1) and (picked[j] = false) and (locked1 = false)then begin     //Karte 1
-             card5.width := player2Slot1.width;
-             card5.height := player2Slot1.height;
-             card5.left := player2Slot1.left;
-             card5.top := player2Slot1.top;
-             picked[j] := true;
-             locked1 := true;
-             card5.visible:=true;
-          end;
-          if (j = 1) and (picked[j] = false) and (locked2 = false)then begin
-             card5.width := player2Slot2.width;
-             card5.height := player2Slot2.height;
-             card5.left := player2Slot2.left;
-             card5.top := player2Slot2.top;
-             picked[j] := true;
-             locked2 := true;
-             card5.visible:=true;
-          end;
-          if (j = 1) and (picked[j] = false) and (locked3 = false)then begin
-             card5.width := player2Slot3.width;
-             card5.height := player2Slot3.height;
-             card5.left := player2Slot3.left;
-             card5.top := player2Slot3.top;
-             picked[j] := true;
-             locked3 := true;
-             card5.visible:=true;
-           end;
-        if (j = 1) and (picked[j] = false) and (locked4 = false)then begin
-             card5.width := player2Slot4.width;
-             card5.height := player2Slot4.height;
-             card5.left := player2Slot4.left;
-             card5.top := player2Slot4.top;
-             picked[j] := true;
-             locked4 := true;
-             card5.visible:=true;
-           end;
-
-        if (j = 2) and (picked[j] = false) and (locked1 = false)then begin       //Karte 2
-             card6.width := player2Slot1.width;
-             card6.height := player2Slot1.height;
-             card6.left := player2Slot1.left;
-             card6.top := player2Slot1.top;
-             picked[j] := true;
-             locked1 := true;
-             card6.visible:=true;
-        end;
-        if (j = 2) and (picked[j] = false) and (locked2 = false)then begin
-             card6.width := player2Slot2.width;
-             card6.height := player2Slot2.height;
-             card6.left := player2Slot2.left;
-             card6.top := player2Slot2.top;
-             picked[j] := true;
-             locked2 := true;
-             card6.visible:=true;
-        end;
-        if (j = 2) and (picked[j] = false) and (locked3 = false)then begin
-             card6.width := player2Slot3.width;
-             card6.height := player2Slot3.height;
-             card6.left := player2Slot3.left;
-             card6.top := player2Slot3.top;
-             picked[j] := true;
-             locked3 := true;
-             card6.visible:=true;
-           end;
-       if (j = 2) and (picked[j] = false) and (locked4 = false)then begin
-             card6.width := player2Slot4.width;
-             card6.height := player2Slot4.height;
-             card6.left := player2Slot4.left;
-             card6.top := player2Slot4.top;
-             picked[j] := true;
-             locked4 := true;
-             card6.visible:=true;
-       end;
-       if (j = 3) and (picked[j] = false) and (locked1 = false)then begin        //Karte 3
-             card7.width := player2Slot1.width;
-             card7.height := player2Slot1.height;
-             card7.left := player2Slot1.left;
-             card7.top := player2Slot1.top;
-             picked[j] := true;
-             locked1 := true;
-             card7.visible:=true;
-           end;
-      if (j = 3) and (picked[j] = false) and (locked2 = false)then begin
-             card7.width := player2Slot2.width;
-             card7.height := player2Slot2.height;
-             card7.left := player2Slot2.left;
-             card7.top := player2Slot2.top;
-             picked[j] := true;
-             locked2 := true;
-             card7.visible:=true;
-           end;
-      if (j = 3) and (picked[j] = false) and (locked3 = false)then begin
-             card7.width := player2Slot3.width;
-             card7.height := player2Slot3.height;
-             card7.left := player2Slot3.left;
-             card7.top := player2Slot3.top;
-             picked[j] := true;
-             locked3 := true;
-             card7.visible:=true;
-           end;
-      if (j = 3) and (picked[j] = false) and (locked4 = false)then begin
-             card7.width := player2Slot4.width;
-             card7.height := player2Slot4.height;
-             card7.left := player2Slot4.left;
-             card7.top := player2Slot4.top;
-             picked[j] := true;
-             locked4 := true;
-             card7.visible:=true;
-           end;
-
-      if (j = 4) and (picked[j] = false) and (locked1 = false)then begin         //Karte 4
-             card8.width := player2Slot1.width;
-             card8.height := player2Slot1.height;
-             card8.left := player2Slot1.left;
-             card8.top := player2Slot1.top;
-             picked[j] := true;
-             locked1 := true;
-             card8.visible:=true;
-           end;
-     if (j = 4) and (picked[j] = false) and (locked2 = false)then begin
-             card8.width := player2Slot2.width;
-             card8.height := player2Slot2.height;
-             card8.left := player2Slot2.left;
-             card8.top := player2Slot2.top;
-             picked[j] := true;
-             locked2 := true;
-             card8.visible:=true;
-           end;
-     if (j = 4) and (picked[j] = false) and (locked3 = false)then begin
-             card8.width := player2Slot3.width;
-             card8.height := player2Slot3.height;
-             card8.left := player2Slot3.left;
-             card8.top := player2Slot3.top;
-             picked[j] := true;
-             locked3 := true;
-             card8.visible:=true;
-           end;
-    if (j = 4) and (picked[j] = false) and (locked4 = false)then begin
-             card8.width := player2Slot4.width;
-             card8.height := player2Slot4.height;
-             card8.left := player2Slot4.left;
-             card8.top := player2Slot4.top;
-             picked[j] := true;
-             locked4 := true;
-             card8.visible:=true;
-       end;
-    end;
-    locked1 := false;
-    locked2 := false;
-    locked3 := false;
-    locked4 := false;
-    picked[1] := false;
-    picked[2] := false;
-    picked[3] := false;
-    picked[4] := false;
-    card1.Height:=card1.height;
+   for a := 1 to 4 do begin
+     if lockedslots1[1] = false then begin
+         cards1[a].width := cardSlot1.width;
+         cards1[a].height := cardSlot1.height;
+         cards1[a].left := cardSlot1.left;
+         cards1[a].top := cardSlot1.top;
+         cards1[a].visible := true;
+         lockedslots1[1]:= true;
+     end
+     else if lockedslots1[2] = false then begin
+         cards1[a].width := cardSlot2.width;
+         cards1[a].height := cardSlot2.height;
+         cards1[a].left := cardSlot2.left;
+         cards1[a].top := cardSlot2.top;
+         cards1[a].visible := true;
+         lockedslots1[2] := true;
+      end
+      else if lockedslots1[3] = false then begin
+         cards1[a].width := cardSlot3.width;
+         cards1[a].height := cardSlot3.height;
+         cards1[a].left := cardSlot3.left;
+         cards1[a].top := cardSlot3.top;
+         cards1[a].visible := true;
+         lockedslots1[3]:=true;
+      end
+      else if lockedslots1[4] = false then begin
+         cards1[a].width := cardSlot4.width;
+         cards1[a].height := cardSlot4.height;
+         cards1[a].left := cardSlot4.left;
+         cards1[a].top := cardSlot4.top;
+         cards1[a].visible := true;
+         lockedslots1[4]:=true;
+      end;
+   end;
+   for b := 1 to 4 do begin
+     if lockedslots1[5] = false then begin
+         cards2[b].width := cardSlot5.width;
+         cards2[b].height := cardSlot5.height;
+         cards2[b].left := cardSlot5.left;
+         cards2[b].top := cardSlot5.top;
+         cards2[b].visible := true;
+         lockedslots1[5]:= true;
+     end
+     else if lockedslots1[6] = false then begin
+         cards2[b].width := cardSlot6.width;
+         cards2[b].height := cardSlot6.height;
+         cards2[b].left := cardSlot6.left;
+         cards2[b].top := cardSlot6.top;
+         cards2[b].visible := true;
+         lockedslots1[6] := true;
+      end
+      else if lockedslots1[7] = false then begin
+         cards2[b].width := cardSlot7.width;
+         cards2[b].height := cardSlot7.height;
+         cards2[b].left := cardSlot7.left;
+         cards2[b].top := cardSlot7.top;
+         cards2[b].visible := true;
+         lockedslots1[7]:=true;
+      end
+      else if lockedslots1[8] = false then begin
+         cards2[b].width := cardSlot8.width;
+         cards2[b].height := cardSlot8.height;
+         cards2[b].left := cardSlot8.left;
+         cards2[b].top := cardSlot8.top;
+         cards2[b].visible := true;
+         lockedslots1[8]:=true;
+      end;
+   end;
 end;
 
 procedure TshowIngame.exitButtonClick(Sender: TObject);
@@ -571,433 +362,433 @@ end;
 
 //Karte 1
 
-procedure TshowIngame.card1MouseDown(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card1_1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  oldleft := card1.left;
-  oldtop := card1.top;
-  card1.BeginDrag(false);
+  oldleft := card1_1.left;
+  oldtop := card1_1.top;
+  card1_1.BeginDrag(false);
 end;
 
-procedure TshowIngame.card1MouseMove(Sender: TObject; Shift: TShiftState; X,
+procedure TshowIngame.card1_1MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
-  if card1.dragging then
+  if card1_1.dragging then
   begin
-     card1.left := card1.left + X - card1.width div 2;
-     card1.top := card1.top + Y - card1.height div 2;
+     card1_1.left := card1_1.left + X - card1_1.width div 2;
+     card1_1.top := card1_1.top + Y - card1_1.height div 2;
   end;
 end;
 
-procedure TshowIngame.card1MouseUp(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card1_1MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  card1.EndDrag(false);
-  if (card1.top <= (cardSlot5.top + cardSlot5.height)) and (lockedfield[1] = false) then begin
-     card1.Top := cardSlot5.top;
-     card1.left := cardSlot5.left;
-     card1.enabled := false;
+  card1_1.EndDrag(false);
+  if (card1_1.top <= (cardSlot5.top + cardSlot5.height)) and (lockedfield[1] = false) then begin
+     card1_1.Top := cardSlot5.top;
+     card1_1.left := cardSlot5.left;
+     card1_1.enabled := false;
      lockedfield[1] := true;
   end
-  else if (card1.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) then begin
-     card1.Top := cardSlot6.top;
-     card1.left := cardSlot6.left;
-     card1.enabled := false;
+  else if (card1_1.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) then begin
+     card1_1.Top := cardSlot6.top;
+     card1_1.left := cardSlot6.left;
+     card1_1.enabled := false;
      lockedfield[2] := true;
   end
-  else if (card1.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) then begin
-     card1.Top := cardSlot7.top;
-     card1.left := cardSlot7.left;
-     card1.enabled := false;
+  else if (card1_1.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) then begin
+     card1_1.Top := cardSlot7.top;
+     card1_1.left := cardSlot7.left;
+     card1_1.enabled := false;
      lockedfield[3] := true;
   end
-  else if (card1.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) then begin
-     card1.Top := cardSlot8.top;
-     card1.left := cardSlot8.left;
-     card1.enabled := false;
+  else if (card1_1.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) then begin
+     card1_1.Top := cardSlot8.top;
+     card1_1.left := cardSlot8.left;
+     card1_1.enabled := false;
      lockedfield[4] := true;
   end
   else begin
-   card1.Left:=oldleft;
-   card1.top:=oldtop;
+   card1_1.Left:=oldleft;
+   card1_1.top:=oldtop;
   end;
 end;
 
 //Karte 2
 
-procedure TshowIngame.card2MouseDown(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card1_2MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  oldleft := card2.left;
-  oldtop := card2.top;
-  card2.BeginDrag(false);
+  oldleft := card1_2.left;
+  oldtop := card1_2.top;
+  card1_2.BeginDrag(false);
 end;
 
-procedure TshowIngame.card2MouseMove(Sender: TObject; Shift: TShiftState; X,
+procedure TshowIngame.card1_2MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
-   if card2.dragging then
+   if card1_2.dragging then
   begin
-     card2.left := card2.left + X - card2.width div 2;
-     card2.top := card2.top + Y - card2.height div 2;
+     card1_2.left := card1_2.left + X - card1_2.width div 2;
+     card1_2.top := card1_2.top + Y - card1_2.height div 2;
   end;
 end;
 
-procedure TshowIngame.card2MouseUp(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card1_2MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-   card2.EndDrag(false);
-  if (card2.top <= (cardSlot5.top + cardSlot5.height)) and (lockedfield[1] = false) then begin
-     card2.Top := cardSlot5.top;
-     card2.left := cardSlot5.left;
-     card2.enabled := false;
+   card1_2.EndDrag(false);
+  if (card1_2.top <= (cardSlot5.top + cardSlot5.height)) and (lockedfield[1] = false) then begin
+     card1_2.Top := cardSlot5.top;
+     card1_2.left := cardSlot5.left;
+     card1_2.enabled := false;
      lockedfield[1] := true;
   end
-  else if (card2.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) then begin
-     card2.Top := cardSlot6.top;
-     card2.left := cardSlot6.left;
-     card2.enabled := false;
+  else if (card1_2.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) then begin
+     card1_2.Top := cardSlot6.top;
+     card1_2.left := cardSlot6.left;
+     card1_2.enabled := false;
      lockedfield[2] := true;
   end
-  else if (card2.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) then begin
-     card2.Top := cardSlot7.top;
-     card2.left := cardSlot7.left;
-     card2.enabled := false;
+  else if (card1_2.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) then begin
+     card1_2.Top := cardSlot7.top;
+     card1_2.left := cardSlot7.left;
+     card1_2.enabled := false;
      lockedfield[3] := true;
   end
-  else if (card2.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) then begin
-     card2.Top := cardSlot8.top;
-     card2.left := cardSlot8.left;
-     card2.enabled := false;
+  else if (card1_2.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) then begin
+     card1_2.Top := cardSlot8.top;
+     card1_2.left := cardSlot8.left;
+     card1_2.enabled := false;
      lockedfield[4] := true;
   end
   else begin
-   card2.Left:=oldleft;
-   card2.top:=oldtop;
+   card1_2.Left:=oldleft;
+   card1_2.top:=oldtop;
   end;
 end;
 
 //Karte 3
 
-procedure TshowIngame.card3MouseDown(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card1_3MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  oldleft := card3.left;
-  oldtop := card3.top;
-  card3.BeginDrag(false);
+  oldleft := card1_3.left;
+  oldtop := card1_3.top;
+  card1_3.BeginDrag(false);
 end;
 
-procedure TshowIngame.card3MouseMove(Sender: TObject; Shift: TShiftState; X,
+procedure TshowIngame.card1_3MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
-  if card3.dragging then
+  if card1_3.dragging then
   begin
-     card3.left := card3.left + X - card3.width div 2;
-     card3.top := card3.top + Y - card3.height div 2;
+     card1_3.left := card1_3.left + X - card1_3.width div 2;
+     card1_3.top := card1_3.top + Y - card1_3.height div 2;
   end;
 end;
 
-procedure TshowIngame.card3MouseUp(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card1_3MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  card3.EndDrag(false);
-  if (card3.top <= (cardSlot5.top + cardSlot5.height)) and (lockedfield[1] = false) then begin
-     card3.Top := cardSlot5.top;
-     card3.left := cardSlot5.left;
-     card3.enabled := false;
+  card1_3.EndDrag(false);
+  if (card1_3.top <= (cardSlot5.top + cardSlot5.height)) and (lockedfield[1] = false) then begin
+     card1_3.Top := cardSlot5.top;
+     card1_3.left := cardSlot5.left;
+     card1_3.enabled := false;
      lockedfield[1] := true;
   end
-  else if (card3.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) then begin
-     card3.Top := cardSlot6.top;
-     card3.left := cardSlot6.left;
-     card3.enabled := false;
+  else if (card1_3.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) then begin
+     card1_3.Top := cardSlot6.top;
+     card1_3.left := cardSlot6.left;
+     card1_3.enabled := false;
      lockedfield[2] := true;
   end
-  else if (card3.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) then begin
-     card3.Top := cardSlot7.top;
-     card3.left := cardSlot7.left;
-     card3.enabled := false;
+  else if (card1_3.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) then begin
+     card1_3.Top := cardSlot7.top;
+     card1_3.left := cardSlot7.left;
+     card1_3.enabled := false;
      lockedfield[3] := true;
   end
-  else if (card3.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) then begin
-     card3.Top := cardSlot8.top;
-     card3.left := cardSlot8.left;
-     card3.enabled := false;
+  else if (card1_3.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) then begin
+     card1_3.Top := cardSlot8.top;
+     card1_3.left := cardSlot8.left;
+     card1_3.enabled := false;
      lockedfield[4] := true;
   end
   else begin
-   card3.Left:=oldleft;
-   card3.top:=oldtop;
+   card1_3.Left:=oldleft;
+   card1_3.top:=oldtop;
   end;
 end;
 
 //Karte 4
 
-procedure TshowIngame.card4MouseDown(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card1_4MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  oldleft := card4.left;
-  oldtop := card4.top;
-  card4.BeginDrag(false);
+  oldleft := card1_4.left;
+  oldtop := card1_4.top;
+  card1_4.BeginDrag(false);
 end;
 
-procedure TshowIngame.card4MouseMove(Sender: TObject; Shift: TShiftState; X,
+procedure TshowIngame.card1_4MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
-   if card4.dragging then
+   if card1_4.dragging then
   begin
-     card4.left := card4.left + X - card4.width div 2;
-     card4.top := card4.top + Y - card4.height div 2;
+     card1_4.left := card1_4.left + X - card1_4.width div 2;
+     card1_4.top := card1_4.top + Y - card1_4.height div 2;
   end;
 end;
 
-procedure TshowIngame.card4MouseUp(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card1_4MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-   card4.EndDrag(false);
-  if (card4.top <= (cardSlot5.top + cardSlot5.height)) and (lockedfield[1] = false) then begin
-     card4.Top := cardSlot5.top;
-     card4.left := cardSlot5.left;
-     card4.enabled := false;
+   card1_4.EndDrag(false);
+  if (card1_4.top <= (cardSlot5.top + cardSlot5.height)) and (lockedfield[1] = false) then begin
+     card1_4.Top := cardSlot5.top;
+     card1_4.left := cardSlot5.left;
+     card1_4.enabled := false;
      lockedfield[1] := true;
   end
-  else if (card4.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) then begin
-     card4.Top := cardSlot6.top;
-     card4.left := cardSlot6.left;
-     card4.enabled := false;
+  else if (card1_4.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) then begin
+     card1_4.Top := cardSlot6.top;
+     card1_4.left := cardSlot6.left;
+     card1_4.enabled := false;
      lockedfield[2] := true;
   end
-  else if (card4.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) then begin
-     card4.Top := cardSlot7.top;
-     card4.left := cardSlot7.left;
-     card4.enabled := false;
+  else if (card1_4.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) then begin
+     card1_4.Top := cardSlot7.top;
+     card1_4.left := cardSlot7.left;
+     card1_4.enabled := false;
      lockedfield[3] := true;
   end
-  else if (card4.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) then begin
-     card4.Top := cardSlot8.top;
-     card4.left := cardSlot8.left;
-     card4.enabled := false;
+  else if (card1_4.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) then begin
+     card1_4.Top := cardSlot8.top;
+     card1_4.left := cardSlot8.left;
+     card1_4.enabled := false;
      lockedfield[4] := true;
   end
   else begin
-   card4.Left:=oldleft;
-   card4.top:=oldtop;
+   card1_4.Left:=oldleft;
+   card1_4.top:=oldtop;
   end;
 end;
 
 //Karte 5
 
-procedure TshowIngame.card5MouseDown(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card2_1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  oldleft := card5.left;
-  oldtop := card5.top;
-  card5.BeginDrag(false);
+  oldleft := card2_1.left;
+  oldtop := card2_1.top;
+  card2_1.BeginDrag(false);
 end;
 
-procedure TshowIngame.card5MouseMove(Sender: TObject; Shift: TShiftState; X,
+procedure TshowIngame.card2_1MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
-  if card5.dragging then
+  if card2_1.dragging then
   begin
-     card5.left := card5.left + X - card5.width div 2;
-     card5.top := card5.top + Y - card5.height div 2;
+     card2_1.left := card2_1.left + X - card2_1.width div 2;
+     card2_1.top := card2_1.top + Y - card2_1.height div 2;
   end;
 end;
 
-procedure TshowIngame.card5MouseUp(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card2_1MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-   card5.EndDrag(false);
-  if ((card5.top + card5.height) >= cardSlot1.top) and (lockedfield[5] = false) then begin
-     card5.Top := cardSlot1.top;
-     card5.left := cardSlot1.left;
-     card5.enabled := false;
+   card2_1.EndDrag(false);
+  if ((card2_1.top + card2_1.height) >= cardSlot1.top) and (lockedfield[5] = false) then begin
+     card2_1.Top := cardSlot1.top;
+     card2_1.left := cardSlot1.left;
+     card2_1.enabled := false;
      lockedfield[5] := true;
   end
-  else if ((card5.top + card5.height) >= cardSlot2.top) and (lockedfield[6] = false) then begin
-     card5.Top := cardSlot2.top;
-     card5.left := cardSlot2.left;
-     card5.enabled := false;
+  else if ((card2_1.top + card2_1.height) >= cardSlot2.top) and (lockedfield[6] = false) then begin
+     card2_1.Top := cardSlot2.top;
+     card2_1.left := cardSlot2.left;
+     card2_1.enabled := false;
      lockedfield[6] := true;
   end
-  else if ((card5.top + card5.height)  >= cardSlot3.top) and (lockedfield[7] = false) then begin
-     card5.Top := cardSlot3.top;
-     card5.left := cardSlot3.left;
-     card5.enabled := false;
+  else if ((card2_1.top + card2_1.height)  >= cardSlot3.top) and (lockedfield[7] = false) then begin
+     card2_1.Top := cardSlot3.top;
+     card2_1.left := cardSlot3.left;
+     card2_1.enabled := false;
      lockedfield[7] := true;
   end
-  else if ((card5.top + card5.height) >= cardSlot4.top) and (lockedfield[8] = false) then begin
-     card5.Top := cardSlot4.top;
-     card5.left := cardSlot4.left;
-     card5.enabled := false;
+  else if ((card2_1.top + card2_1.height) >= cardSlot4.top) and (lockedfield[8] = false) then begin
+     card2_1.Top := cardSlot4.top;
+     card2_1.left := cardSlot4.left;
+     card2_1.enabled := false;
      lockedfield[8] := true;
   end
   else begin
-   card5.Left:=oldleft;
-   card5.top:=oldtop;
+   card2_1.Left:=oldleft;
+   card2_1.top:=oldtop;
   end;
 end;
 
 //Karte 6
 
-procedure TshowIngame.card6MouseDown(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card2_2MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  oldleft := card6.left;
-  oldtop := card6.top;
-  card6.BeginDrag(false);
+  oldleft := card2_2.left;
+  oldtop := card2_2.top;
+  card2_2.BeginDrag(false);
 end;
 
-procedure TshowIngame.card6MouseMove(Sender: TObject; Shift: TShiftState; X,
+procedure TshowIngame.card2_2MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
-  if card6.dragging then
+  if card2_2.dragging then
   begin
-     card6.left := card6.left + X - card6.width div 2;
-     card6.top := card6.top + Y - card6.height div 2;
+     card2_2.left := card2_2.left + X - card2_2.width div 2;
+     card2_2.top := card2_2.top + Y - card2_2.height div 2;
   end;
 end;
 
-procedure TshowIngame.card6MouseUp(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card2_2MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-   card6.EndDrag(false);
-  if ((card6.top + card6.height) >= cardSlot1.top) and (lockedfield[5] = false) then begin
-     card6.Top := cardSlot1.top;
-     card6.left := cardSlot1.left;
-     card6.enabled := false;
+   card2_2.EndDrag(false);
+  if ((card2_2.top + card2_2.height) >= cardSlot1.top) and (lockedfield[5] = false) then begin
+     card2_2.Top := cardSlot1.top;
+     card2_2.left := cardSlot1.left;
+     card2_2.enabled := false;
      lockedfield[5] := true;
   end
-  else if ((card6.top + card6.height) >= cardSlot2.top) and (lockedfield[6] = false) then begin
-     card6.Top := cardSlot2.top;
-     card6.left := cardSlot2.left;
-     card6.enabled := false;
+  else if ((card2_2.top + card2_2.height) >= cardSlot2.top) and (lockedfield[6] = false) then begin
+     card2_2.Top := cardSlot2.top;
+     card2_2.left := cardSlot2.left;
+     card2_2.enabled := false;
      lockedfield[6] := true;
   end
-  else if ((card6.top + card6.height) >= cardSlot3.top) and (lockedfield[7] = false) then begin
-     card6.Top := cardSlot3.top;
-     card6.left := cardSlot3.left;
-     card6.enabled := false;
+  else if ((card2_2.top + card2_2.height) >= cardSlot3.top) and (lockedfield[7] = false) then begin
+     card2_2.Top := cardSlot3.top;
+     card2_2.left := cardSlot3.left;
+     card2_2.enabled := false;
      lockedfield[7] := true;
   end
-  else if ((card6.top + card6.height) >= cardSlot4.top) and (lockedfield[8] = false) then begin
-     card6.Top := cardSlot4.top;
-     card6.left := cardSlot4.left;
-     card6.enabled := false;
+  else if ((card2_2.top + card2_2.height) >= cardSlot4.top) and (lockedfield[8] = false) then begin
+     card2_2.Top := cardSlot4.top;
+     card2_2.left := cardSlot4.left;
+     card2_2.enabled := false;
      lockedfield[8] := true;
   end
   else begin
-   card6.Left:=oldleft;
-   card6.top:=oldtop;
+   card2_2.Left:=oldleft;
+   card2_2.top:=oldtop;
   end;
 end;
 
 //Karte 7
 
-procedure TshowIngame.card7MouseDown(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card2_3MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  oldleft := card7.left;
-  oldtop := card7.top;
-  card7.BeginDrag(false);
+  oldleft := card2_3.left;
+  oldtop := card2_3.top;
+  card2_3.BeginDrag(false);
 end;
 
-procedure TshowIngame.card7MouseMove(Sender: TObject; Shift: TShiftState; X,
+procedure TshowIngame.card2_3MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
-   if card7.dragging then
+   if card2_3.dragging then
   begin
-     card7.left := card7.left + X - card7.width div 2;
-     card7.top := card7.top + Y - card7.height div 2;
+     card2_3.left := card2_3.left + X - card2_3.width div 2;
+     card2_3.top := card2_3.top + Y - card2_3.height div 2;
   end;
 end;
 
-procedure TshowIngame.card7MouseUp(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card2_3MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  card7.EndDrag(false);
-  if ((card7.top + card7.height) >= cardSlot1.top) and (lockedfield[5] = false) then begin
-     card7.Top := cardSlot1.top;
-     card7.left := cardSlot1.left;
-     card7.enabled := false;
+  card2_3.EndDrag(false);
+  if ((card2_3.top + card2_3.height) >= cardSlot1.top) and (lockedfield[5] = false) then begin
+     card2_3.Top := cardSlot1.top;
+     card2_3.left := cardSlot1.left;
+     card2_3.enabled := false;
      lockedfield[5] := true;
   end
-  else if ((card7.top + card7.height) >= cardSlot2.top) and (lockedfield[6] = false) then begin
-     card7.Top := cardSlot2.top;
-     card7.left := cardSlot2.left;
-     card7.enabled := false;
+  else if ((card2_3.top + card2_3.height) >= cardSlot2.top) and (lockedfield[6] = false) then begin
+     card2_3.Top := cardSlot2.top;
+     card2_3.left := cardSlot2.left;
+     card2_3.enabled := false;
      lockedfield[6] := true;
   end
-  else if ((card7.top + card7.height) >= cardSlot3.top) and (lockedfield[7] = false) then begin
-     card7.Top := cardSlot3.top;
-     card7.left := cardSlot3.left;
-     card7.enabled := false;
+  else if ((card2_3.top + card2_3.height) >= cardSlot3.top) and (lockedfield[7] = false) then begin
+     card2_3.Top := cardSlot3.top;
+     card2_3.left := cardSlot3.left;
+     card2_3.enabled := false;
      lockedfield[7] := true;
   end
-  else if ((card7.top + card7.height) >= cardSlot4.top) and (lockedfield[8] = false) then begin
-     card7.Top := cardSlot4.top;
-     card7.left := cardSlot4.left;
-     card7.enabled := false;
+  else if ((card2_3.top + card2_3.height) >= cardSlot4.top) and (lockedfield[8] = false) then begin
+     card2_3.Top := cardSlot4.top;
+     card2_3.left := cardSlot4.left;
+     card2_3.enabled := false;
      lockedfield[8] := true;
   end
   else begin
-   card7.Left:=oldleft;
-   card7.top:=oldtop;
+   card2_3.Left:=oldleft;
+   card2_3.top:=oldtop;
   end;
 end;
 
 //Karte 8
 
-procedure TshowIngame.card8MouseDown(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card2_4MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-   oldleft := card8.left;
-  oldtop := card8.top;
-  card8.BeginDrag(false);
+   oldleft := card2_4.left;
+  oldtop := card2_4.top;
+  card2_4.BeginDrag(false);
 end;
 
-procedure TshowIngame.card8MouseMove(Sender: TObject; Shift: TShiftState; X,
+procedure TshowIngame.card2_4MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
-  if card8.dragging then
+  if card2_4.dragging then
   begin
-     card8.left := card8.left + X - card8.width div 2;
-     card8.top := card8.top + Y - card8.height div 2;
+     card2_4.left := card2_4.left + X - card2_4.width div 2;
+     card2_4.top := card2_4.top + Y - card2_4.height div 2;
   end;
 end;
 
-procedure TshowIngame.card8MouseUp(Sender: TObject; Button: TMouseButton;
+procedure TshowIngame.card2_4MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  card8.EndDrag(false);
-  if ((card8.top + card8.height) >= cardSlot1.top) and (lockedfield[5] = false) then begin
-     card8.Top := cardSlot1.top;
-     card8.left := cardSlot1.left;
-     card8.enabled := false;
+  card2_4.EndDrag(false);
+  if ((card2_4.top + card2_4.height) >= cardSlot1.top) and (lockedfield[5] = false) then begin
+     card2_4.Top := cardSlot1.top;
+     card2_4.left := cardSlot1.left;
+     card2_4.enabled := false;
      lockedfield[5] := true;
   end
-  else if ((card8.top + card8.height) >= cardSlot2.top) and (lockedfield[6] = false) then begin
-     card8.Top := cardSlot2.top;
-     card8.left := cardSlot2.left;
-     card8.enabled := false;
+  else if ((card2_4.top + card2_4.height) >= cardSlot2.top) and (lockedfield[6] = false) then begin
+     card2_4.Top := cardSlot2.top;
+     card2_4.left := cardSlot2.left;
+     card2_4.enabled := false;
      lockedfield[6] := true;
   end
-  else if ((card8.top + card8.height) >= cardSlot3.top) and (lockedfield[7] = false) then begin
-     card8.Top := cardSlot3.top;
-     card8.left := cardSlot3.left;
-     card8.enabled := false;
+  else if ((card2_4.top + card2_4.height) >= cardSlot3.top) and (lockedfield[7] = false) then begin
+     card2_4.Top := cardSlot3.top;
+     card2_4.left := cardSlot3.left;
+     card2_4.enabled := false;
      lockedfield[7] := true;
   end
-  else if ((card8.top + card8.height) >= cardSlot4.top) and (lockedfield[8] = false) then begin
-     card8.Top := cardSlot4.top;
-     card8.left := cardSlot4.left;
-     card8.enabled := false;
+  else if ((card2_4.top + card2_4.height) >= cardSlot4.top) and (lockedfield[8] = false) then begin
+     card2_4.Top := cardSlot4.top;
+     card2_4.left := cardSlot4.left;
+     card2_4.enabled := false;
      lockedfield[8] := true;
   end
   else begin
-   card8.Left:=oldleft;
-   card8.top:=oldtop;
+   card2_4.Left:=oldleft;
+   card2_4.top:=oldtop;
   end;
 end;
 
