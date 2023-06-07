@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="40"/>
       </Unit>
       <Unit>
         <Filename Value="ingame.pas"/>
@@ -21,142 +21,164 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="250"/>
-        <CursorPos X="9" Y="277"/>
-        <FoldState Value=" T3pK065 pj0jM[94Pj0iT0I"/>
-        <UsageCount Value="37"/>
+        <TopLine Value="790"/>
+        <CursorPos X="54" Y="898"/>
+        <FoldState Value=" T3pf0{6116 pkIn808514]DPn2oR0$"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="C:\lazarus\lcl\include\control.inc"/>
+        <Filename Value="playerclass.pas"/>
+        <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
+        <CursorPos X="12" Y="16"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cardclass.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="65" Y="19"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\include\control.inc"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="4272"/>
         <CursorPos Y="4306"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\sahil code\playerclass.pas"/>
+        <UnitName Value="Playerclass"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="704" Column="3" TopLine="667"/>
+        <Caret Line="276" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="712" Column="3" TopLine="680"/>
+        <Caret Line="284" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="753" Column="9" TopLine="722"/>
+        <Caret Line="285" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="762" Column="3" TopLine="724"/>
+        <Caret Line="286" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="770" Column="3" TopLine="738"/>
+        <Caret Line="287" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="782" Column="11" TopLine="762"/>
+        <Caret Line="288" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="820" Column="3" TopLine="788"/>
+        <Caret Line="289" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="828" Column="3" TopLine="790"/>
+        <Caret Line="290" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="853" Column="38" TopLine="830"/>
+        <Caret Line="291" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="841" Column="34" TopLine="818"/>
+        <Caret Line="284" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="879" TopLine="839"/>
+        <Caret Line="285" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="878" Column="3" TopLine="841"/>
+        <Caret Line="293" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="886" Column="3" TopLine="855"/>
+        <Caret Line="294" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="935" Column="5" TopLine="897"/>
+        <Caret Line="295" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="936" Column="3" TopLine="899"/>
+        <Caret Line="269" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="944" Column="3" TopLine="913"/>
+        <Caret Line="282" Column="11" TopLine="254"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="145" Column="25" TopLine="121"/>
+        <Caret Line="347" Column="31" TopLine="311"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="135" Column="18" TopLine="122"/>
+        <Caret Line="8" Column="100" TopLine="243"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="135" Column="18" TopLine="135"/>
+        <Caret Line="274" Column="13" TopLine="315"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="136" Column="18" TopLine="136"/>
+        <Caret Line="273" Column="13" TopLine="273"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="310" Column="10" TopLine="238"/>
+        <Caret Line="272" Column="13" TopLine="272"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="269" Column="13" TopLine="256"/>
+        <Caret Line="271" Column="13" TopLine="271"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="792" Column="6" TopLine="756"/>
+        <Caret Line="142" TopLine="117"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="276" Column="14" TopLine="258"/>
+        <Caret Line="143" TopLine="118"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="273" Column="29" TopLine="258"/>
+        <Caret Line="144" TopLine="119"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="276" Column="14" TopLine="249"/>
+        <Caret Line="145" TopLine="120"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="278" Column="19" TopLine="249"/>
+        <Caret Line="147" TopLine="122"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="268" Column="10" TopLine="249"/>
+        <Caret Line="180" Column="11" TopLine="180"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="270" Column="4" TopLine="255"/>
+        <Caret Line="474" Column="40" TopLine="425"/>
       </Position>
       <Position>
         <Filename Value="ingame.pas"/>
-        <Caret Line="281" Column="19" TopLine="264"/>
+        <Caret Line="560" Column="38" TopLine="524"/>
       </Position>
     </JumpHistory>
     <RunParams>
