@@ -1,0 +1,6 @@
+Player1_name: messi
+Player1_HP: 200
+Player1_Mana: 1232
+Player2_name: soso
+Player2_HP: 150
+Player2_Mana: 1440
