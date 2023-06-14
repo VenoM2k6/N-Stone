@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="scum1results.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="51"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ingame.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="showIngame"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="1107"/>
+        <CursorPos X="24" Y="1152"/>
+        <FoldState Value=" T3ug084J piLsd03 T0@N{p7@"/>
+        <UsageCount Value="51"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="playerclass.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="12" Y="16"/>
+        <UsageCount Value="34"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cardclass.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="30" Y="16"/>
+        <UsageCount Value="34"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\include\control.inc"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="4272"/>
+        <CursorPos Y="4306"/>
+        <UsageCount Value="16"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\sahil code\playerclass.pas"/>
+        <UnitName Value="Playerclass"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="107" Column="20" TopLine="95"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="198" Column="5" TopLine="171"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="120" Column="40" TopLine="94"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="137" Column="14" TopLine="110"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1099" Column="14" TopLine="1061"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1108" Column="24" TopLine="1069"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1118" Column="6" TopLine="1070"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1124" Column="7" TopLine="1075"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1159" TopLine="1114"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1164" TopLine="1115"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1168" Column="5" TopLine="1119"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1176" TopLine="1124"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1210" Column="18" TopLine="1168"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1198" Column="57" TopLine="1117"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1099" Column="29" TopLine="1059"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1136" Column="247" TopLine="1131"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="491" Column="70" TopLine="469"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1135" Column="25" TopLine="1081"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="492" Column="6" TopLine="468"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="494" Column="6" TopLine="470"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1087" Column="38" TopLine="1060"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="657" Column="16" TopLine="451"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1088" TopLine="1054"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1086" TopLine="1054"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1057" Column="4" TopLine="1055"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1096" Column="10" TopLine="1054"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1086" Column="67" TopLine="1064"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1089" Column="4" TopLine="1075"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1105" Column="32" TopLine="1075"/>
+      </Position>
+      <Position>
+        <Filename Value="ingame.pas"/>
+        <Caret Line="1152" Column="32" TopLine="1099"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode="default">
+        <Mode Name="default">
+          <local>
+            <CommandLineParams Value="1086"/>
+          </local>
+        </Mode>
+      </Modes>
+    </RunParams>
+    <HistoryLists>
+      <List Name="LaunchingApplication" Type="File" Count="1">
+        <Item1 Value="C:\WINDOWS\system32\cmd.exe /C ${TargetCmdLine}"/>
+      </List>
+      <List Name="CommandLineParameters" Count="1">
+        <Item1 Value="1086"/>
+      </List>
+    </HistoryLists>
+  </ProjectSession>
+</CONFIG>
