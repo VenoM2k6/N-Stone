@@ -49,6 +49,20 @@
         <Filename Value="cardclass.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="lobbycode.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="lobby"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="menucode.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="menu"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

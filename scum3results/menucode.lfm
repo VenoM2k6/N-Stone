@@ -1,0 +1,9 @@
+object menu: Tmenu
+  Left = 1266
+  Height = 240
+  Top = 483
+  Width = 320
+  Caption = 'menu'
+  OnShow = FormShow
+  LCLVersion = '2.2.4.0'
+end
