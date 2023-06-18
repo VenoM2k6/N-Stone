@@ -5,7 +5,7 @@ unit lobbycode;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ColorBox, menucode;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ColorBox, ingame, logincode;
 
 type
 
@@ -41,6 +41,8 @@ procedure Tlobby.FormCreate(Sender: TObject);
 begin
 
     lobby.show;
+    loginmenu.show;
+
     WindowState := wsMaximized;
     currentHeight := Screen.height;
     currentWidth := Screen.Width;
@@ -77,7 +79,6 @@ end;
 procedure Tlobby.playbuttonClick(Sender: TObject);
 begin
      showingame.show;
-     hide;
 end;
 
 

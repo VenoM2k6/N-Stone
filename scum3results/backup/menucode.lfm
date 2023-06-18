@@ -1,9 +1,39 @@
-object menu: Tmenu
-  Left = 1266
-  Height = 240
-  Top = 483
-  Width = 320
-  Caption = 'menu'
+object menuBetween: TmenuBetween
+  Left = 610
+  Height = 497
+  Top = 235
+  Width = 943
+  BorderStyle = bsNone
+  Caption = 'menuBetween'
+  ClientHeight = 497
+  ClientWidth = 943
+  DesignTimePPI = 120
   OnShow = FormShow
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '2.2.6.0'
+  object continueButton: TButton
+    Left = 328
+    Height = 64
+    Top = 264
+    Width = 206
+    Caption = 'Continue'
+    OnClick = continueButtonClick
+    TabOrder = 0
+  end
+  object closeButton: TButton
+    Left = 328
+    Height = 64
+    Top = 200
+    Width = 206
+    Caption = 'Close'
+    TabOrder = 1
+  end
+  object mainmenu: TButton
+    Left = 328
+    Height = 64
+    Top = 136
+    Width = 206
+    Caption = 'Main Menu'
+    OnClick = mainmenuClick
+    TabOrder = 2
+  end
 end

@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="77"/>
       </Unit>
       <Unit>
         <Filename Value="ingame.pas"/>
@@ -20,11 +20,11 @@
         <ComponentName Value="showIngame"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
-        <CursorPos X="100" Y="8"/>
-        <FoldState Value=" T3tF0D6 pj9je085]9Ijg[97[99k008011 PeK0 T0@F{\7$"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="293"/>
+        <CursorPos X="37" Y="312"/>
         <ComponentState Value="1"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -32,16 +32,16 @@
         <Filename Value="playerclass.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="12" Y="16"/>
-        <UsageCount Value="47"/>
+        <CursorPos X="2"/>
+        <UsageCount Value="60"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cardclass.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
-        <CursorPos X="30" Y="16"/>
-        <UsageCount Value="47"/>
+        <CursorPos X="77" Y="23"/>
+        <UsageCount Value="60"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -50,31 +50,52 @@
         <ComponentName Value="lobby"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <CursorPos X="84" Y="8"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="2"/>
+        <CursorPos Y="2"/>
         <ComponentState Value="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="46"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="menucode.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="menu"/>
+        <ComponentName Value="menuBetween"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
-        <CursorPos X="14" Y="19"/>
-        <UsageCount Value="20"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="51"/>
+        <CursorPos X="5" Y="65"/>
+        <UsageCount Value="33"/>
+      </Unit>
+      <Unit>
+        <Filename Value="closespecificforms.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="5"/>
+        <CursorPos X="38" Y="10"/>
+        <UsageCount Value="31"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="logincode.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="loginmenu"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="102"/>
+        <CursorPos X="28" Y="106"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="4272"/>
         <CursorPos Y="4306"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -83,127 +104,134 @@
         <EditorIndex Value="-1"/>
         <UsageCount Value="9"/>
       </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2404"/>
+        <CursorPos Y="2412"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="79" Column="3" TopLine="43"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="44" Column="65" TopLine="31"/>
       </Position>
       <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="80" Column="3" TopLine="44"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="25" Column="28" TopLine="25"/>
       </Position>
       <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="81" Column="3" TopLine="45"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="26" Column="28" TopLine="26"/>
       </Position>
       <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="35" Column="55" TopLine="35"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="27" Column="28" TopLine="27"/>
       </Position>
       <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="34" Column="55" TopLine="34"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="26" Column="28" TopLine="26"/>
       </Position>
       <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="33" Column="55" TopLine="33"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="47" Column="15" TopLine="38"/>
       </Position>
       <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="32" Column="55" TopLine="32"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="52" Column="20" TopLine="41"/>
       </Position>
       <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="75" Column="6" TopLine="40"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="53" Column="34" TopLine="44"/>
       </Position>
       <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="73" Column="10" TopLine="40"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="60" Column="31" TopLine="49"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="1178" Column="23" TopLine="987"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="62" Column="16" TopLine="52"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="1010" Column="67" TopLine="988"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="83" Column="32" TopLine="64"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="1009" Column="67" TopLine="987"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="78" Column="7" TopLine="70"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="1065" Column="10" TopLine="987"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="80" Column="7" TopLine="72"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="494" Column="8" TopLine="386"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="105" Column="19" TopLine="88"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="508" Column="8" TopLine="487"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="102" Column="20" TopLine="98"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="522" Column="8" TopLine="501"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="113" Column="24" TopLine="99"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="536" Column="8" TopLine="515"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="109" Column="20" TopLine="100"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="1163" Column="25" TopLine="1137"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="119" Column="24" TopLine="106"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="1162" Column="25" TopLine="1136"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="125" Column="25" TopLine="111"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="1164" Column="25" TopLine="1164"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="107" Column="49" TopLine="95"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="474" Column="5" TopLine="431"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="106" Column="56" TopLine="97"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="250" Column="46" TopLine="236"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="102" Column="29" TopLine="102"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="251" Column="46" TopLine="237"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="113" Column="27" TopLine="100"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="250" Column="46" TopLine="236"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="115" Column="12" TopLine="101"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="239" Column="199" TopLine="227"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="168" Column="62" TopLine="155"/>
       </Position>
       <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="79" Column="12" TopLine="38"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="182" Column="49" TopLine="168"/>
       </Position>
       <Position>
-        <Filename Value="ingame.pas"/>
-        <Caret Line="8" Column="110"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="183" Column="49" TopLine="183"/>
       </Position>
       <Position>
-        <Filename Value="menucode.pas"/>
-        <Caret Line="20" Column="5"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="182" Column="49" TopLine="182"/>
       </Position>
       <Position>
-        <Filename Value="menucode.pas"/>
-        <Caret Line="34" Column="13"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="164" Column="27" TopLine="151"/>
       </Position>
       <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="79" Column="16" TopLine="43"/>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="120" Column="48" TopLine="104"/>
       </Position>
     </JumpHistory>
     <RunParams>

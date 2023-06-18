@@ -10,7 +10,8 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, ingame, playerclass, cardclass, lobbycode, menucode
+  Forms, ingame, playerclass, cardclass, lobbycode, menucode,
+  CloseSpecificForms, logincode
   { you can add units after this };
 
 {$R *.res}
@@ -21,7 +22,8 @@ begin
   Application.Initialize;
   Application.CreateForm(TshowIngame, showIngame);
   Application.CreateForm(Tlobby, lobby);
-  Application.CreateForm(Tmenu, menu);
+  Application.CreateForm(TmenuBetween, menuBetween);
+  Application.CreateForm(Tloginmenu, loginmenu);
   Application.Run;
 end.
 

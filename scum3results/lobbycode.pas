@@ -41,6 +41,7 @@ procedure Tlobby.FormCreate(Sender: TObject);
 begin
 
     lobby.show;
+
     WindowState := wsMaximized;
     currentHeight := Screen.height;
     currentWidth := Screen.Width;
@@ -77,7 +78,6 @@ end;
 procedure Tlobby.playbuttonClick(Sender: TObject);
 begin
      showingame.show;
-     hide;
 end;
 
 

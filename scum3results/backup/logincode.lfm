@@ -1,0 +1,147 @@
+object loginmenu: Tloginmenu
+  Left = 584
+  Height = 413
+  Top = 290
+  Width = 648
+  BorderStyle = bsNone
+  Caption = 'loginmenu'
+  ClientHeight = 413
+  ClientWidth = 648
+  DesignTimePPI = 120
+  OnCreate = FormCreate
+  LCLVersion = '2.2.6.0'
+  object player1: TEdit
+    Left = 128
+    Height = 28
+    Top = 40
+    Width = 100
+    AutoSize = False
+    DoubleBuffered = True
+    Enabled = False
+    ParentDoubleBuffered = False
+    ReadOnly = True
+    TabOrder = 0
+    Text = 'Player 1'
+  end
+  object name1: TEdit
+    Left = 128
+    Height = 35
+    Top = 224
+    Width = 107
+    AutoSize = False
+    OnClick = name1Click
+    ParentColor = True
+    TabOrder = 1
+    Text = 'Name'
+    Visible = False
+  end
+  object password1: TEdit
+    Left = 128
+    Height = 35
+    Top = 265
+    Width = 107
+    AutoSize = False
+    OnClick = password1Click
+    ParentColor = True
+    TabOrder = 2
+    Text = 'Password'
+    Visible = False
+  end
+  object player2: TEdit
+    Left = 304
+    Height = 32
+    Top = 40
+    Width = 124
+    AutoSize = False
+    Enabled = False
+    ReadOnly = True
+    TabOrder = 3
+    Text = 'Player 2'
+  end
+  object name2: TEdit
+    Left = 317
+    Height = 35
+    Top = 224
+    Width = 107
+    AutoSize = False
+    OnClick = name2Click
+    ParentColor = True
+    TabOrder = 4
+    Text = 'Name'
+    Visible = False
+  end
+  object password2: TEdit
+    Left = 317
+    Height = 35
+    Top = 265
+    Width = 107
+    AutoSize = False
+    OnClick = password2Click
+    ParentColor = True
+    TabOrder = 5
+    Text = 'Password'
+    Visible = False
+  end
+  object signin1: TButton
+    Left = 128
+    Height = 31
+    Top = 88
+    Width = 100
+    Caption = 'Sign in'
+    OnClick = signin1Click
+    TabOrder = 6
+  end
+  object signup1: TButton
+    Left = 128
+    Height = 31
+    Top = 120
+    Width = 98
+    Caption = 'Sign up'
+    OnClick = signup1Click
+    TabOrder = 7
+  end
+  object signin2: TButton
+    Left = 304
+    Height = 31
+    Top = 88
+    Width = 100
+    Caption = 'Sign in'
+    OnClick = signin2Click
+    TabOrder = 8
+  end
+  object signup2: TButton
+    Left = 304
+    Height = 31
+    Top = 120
+    Width = 102
+    Caption = 'Sign up'
+    OnClick = signup2Click
+    TabOrder = 9
+  end
+  object classchooser1: TComboBox
+    Left = 456
+    Height = 28
+    Top = 44
+    Width = 168
+    AutoSize = False
+    ItemHeight = 20
+    TabOrder = 10
+    Visible = False
+  end
+  object classchooser2: TComboBox
+    Left = 456
+    Height = 36
+    Top = 87
+    Width = 168
+    AutoSize = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -20
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ItemHeight = 28
+    ParentFont = False
+    TabOrder = 11
+    Text = 'Choose class'
+    Visible = False
+  end
+end

@@ -59,7 +59,18 @@
       <Unit>
         <Filename Value="menucode.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="menu"/>
+        <ComponentName Value="menuBetween"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="closespecificforms.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="logincode.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="loginmenu"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>

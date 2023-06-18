@@ -12,6 +12,7 @@ type
     private
       FHp: integer;
       FDamage: integer;
+      FCardPosition: integer;
       FManaCost: integer;
       FcardIsPlaced: boolean;
     public
@@ -19,6 +20,7 @@ type
       property Damage: integer read FDamage write FDamage;
       property ManaCost: integer read FManaCost write FManaCost;
       property cardIsPlaced: boolean read FcardIsPlaced write FcardIsPlaced;
+      property CardPosition: integer read FCardPosition write FCardPosition;
   end;
 
 implementation

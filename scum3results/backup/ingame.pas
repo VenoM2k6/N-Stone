@@ -13,7 +13,11 @@ type
 
   TshowIngame = class(TForm)
     attackButton: TButton;
+    menuButton: TButton;
+    continueButton: TButton;
+    closeButton: TButton;
     exitButton: TImage;
+    menuPanel: TPanel;
     pullCards: TImage;
     mana1: TEdit;
     mana2: TEdit;
@@ -95,11 +99,18 @@ type
     procedure card2_4MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure card2_4MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure continueButtonClick(Sender: TObject);
+    procedure closeButtonClick(Sender: TObject);
     procedure exitButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
+    procedure menuButtonClick(Sender: TObject);
+    procedure player1imagefieldClick(Sender: TObject);
+    procedure player2imagefieldClick(Sender: TObject);
     procedure pullCardsClick(Sender: TObject);
     procedure turnClick(Sender: TObject);
+    procedure turnKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
 
   public
@@ -107,6 +118,10 @@ type
   end;
 
 var
+  areaTwoIsEmpty, areaOneIsEmpty: boolean;
+
+  openWindow: boolean;
+
   autoclose: boolean;
 
   attackMode: boolean; //Damage System
@@ -141,10 +156,29 @@ implementation
 
 { TshowIngame }
 
+//Das ist die Main Form. Die Prozedur schließt diese am Anfang, damit die Lobby aufgerufen wird
+procedure TshowIngame.FormShow(Sender: TObject);
+begin
+   if autoclose then begin
+     autoclose := false;
+     showingame.hide;
+   end;
+ end;
+
+//Alle Werte die festgelegt werden müssen, bevor der Nutzer Eingaben gemacht hat
 procedure TshowIngame.FormCreate(Sender: TObject);
 begin
+    //automatische Schließen beim Starten des Programms
     autoclose := true;
+
+    //Abfrage ob das Zwischenmenü schon offen ist, damit man es automatisch schließen kann, wenn man eine Taste drückt
+    openWindow := false;
+
+    //Angriffsmodus, welcher über den Attack Button geregelt wird
     attackMode := false;
+
+
+    //Karten erstellen und Grundwerte zuweisen
 
     card1 := TCard.Create;
     card2 := TCard.Create;
@@ -182,6 +216,15 @@ begin
     dcard3.manacost := card3.manacost;
     dcard4.manacost := card4.manacost;
 
+    card1.CardPosition := 0;
+    card2.CardPosition := 0;
+    card3.CardPosition := 0;
+    card4.CardPosition := 0;
+    dcard1.CardPosition := 0;
+    dcard2.CardPosition := 0;
+    dcard3.CardPosition := 0;
+    dcard4.CardPosition := 0;
+
     //Spieler erstellen
 
     player1 := TPlayer.Create;
@@ -200,14 +243,12 @@ begin
     mana2.text := mana2.text + ' ' + inttostr(player2.Mana);
     hp2.text := hp2.text + ' ' + inttostr(player1.Hp);
 
-    card1.cardIsPlaced := false;
-    card2.cardIsPlaced := false;
-    card3.cardIsPlaced := false;
-    card4.cardIsPlaced := false;
-
-    //Bildsperre zum platzieren bis der Spieler dran ist
+    //Wert welcher Spieler am Zug ist, wenn man den Knopf drückt
 
     player2hasturn := true;
+
+    //Zählervariable, damit die Spieler nicht direkt am Anfang angreifen können
+
     k := 0;
 
     //Kartensetauswahl
@@ -220,7 +261,7 @@ begin
     lockedslots2[3]:=false;
     lockedslots2[4]:=false;
 
-    //Karten initialisieren
+    //Karten dem Image-Array zuweisen, damit diese
     cards1[1] := card1_1;
     cards1[2] := card1_2;
     cards1[3] := card1_3;
@@ -231,7 +272,7 @@ begin
     cards2[3] := card2_3;
     cards2[4] := card2_4;
 
-    //Abfrage fürs Platzieren
+    //Status über die Felder auf denen man etwas platzieren kann => Wenn diese belegt sind, wird lockedfield[1] true gesetzt
     lockedfield[1]:=false;
     lockedfield[2]:=false;
     lockedfield[3]:=false;
@@ -260,7 +301,7 @@ begin
 
     //PullCardsbutton
     pullCards.Height := exitButton.height;
-    pullCards.Width := exitButton.width;
+    pullCards.Width := exitButton.width + Round(currentWidth * 1/16 );
     pullCards.Top := exitButton.top - exitButton.height;
     pullCards.Left := exitButton.left;
 
@@ -380,11 +421,14 @@ begin
     cardSlot8.top := cardSlot5.top;
 
 end;
+// !!!!! KANN GELÖSCHT WERDEN SOBALD IMAGE FÜR TURN
 
 //Karten ziehen
 
 procedure TshowIngame.pullCardsClick(Sender: TObject);
 begin
+   pullCards.Visible := false;
+   pullCards.enabled := false;
    turn.visible := true;
    {Randomize;
    for i := 4 downto 1 do
@@ -472,7 +516,32 @@ begin
    end;
 end;
 
-//Aufpassen hier ist player2hasturn vertauscht von der Logik
+//Angriffsprozeduren
+
+procedure TshowIngame.player1imagefieldClick(Sender: TObject);
+begin
+   if (card1.CardPosition = 0) and (card2.CardPosition = 0) and (card3.CardPosition = 0) and (card4.CardPosition = 0) then begin
+      player1.Hp:=player1.hp - wholeDamage;
+      wholeDamage := 0;
+      mana1.text := 'Mana: ' + inttostr(player1.Mana);
+      hp1.text := 'Hp: ' + inttostr(player1.Hp);
+   end;
+   if player1.hp <= 0 then begin
+      hide;
+   end;
+end;
+procedure TshowIngame.player2imagefieldClick(Sender: TObject);
+begin
+   if (dcard1.CardPosition = 0) and (dcard2.CardPosition = 0) and (dcard3.CardPosition = 0) and (dcard4.CardPosition = 0) then begin
+      player2.Hp:=player2.hp - wholeDamage;
+      wholeDamage := 0;
+      mana2.text := 'Mana: ' + inttostr(player2.Mana);
+      hp2.text := 'Hp: ' + inttostr(player2.Hp);
+   end;
+   if player2.hp <= 0 then begin
+      hide;
+   end;
+end;
 procedure TshowIngame.card1_1Click(Sender: TObject);
 begin
    if (attackMode) AND (player2hasturn) AND (card1.cardIsPlaced) then begin
@@ -484,6 +553,7 @@ begin
       wholeDamage := 0;
       if card1.hp <= 0 then begin
          card1_1.visible := false;
+         card1.CardPosition := 0;
       end;
    end;
 end;
@@ -498,6 +568,7 @@ begin
       wholeDamage := 0;
       if card2.hp <= 0 then begin
          card1_2.visible := false;
+         card2.CardPosition := 0;
       end;
    end;
 end;
@@ -512,6 +583,7 @@ begin
       wholeDamage := 0;
       if card3.hp <= 0 then begin
          card1_3.visible := false;
+         card3.CardPosition := 0;
       end;
    end;
 end;
@@ -526,6 +598,7 @@ begin
       wholeDamage := 0;
       if card4.hp <= 0 then begin
          card1_4.visible := false;
+         card4.CardPosition := 0;
       end;
    end;
 end;
@@ -540,6 +613,7 @@ begin
       wholeDamage := 0;
       if dcard1.hp <= 0 then begin
          card2_1.visible := false;
+         dcard1.CardPosition := 0;
       end;
    end;
 end;
@@ -554,6 +628,7 @@ begin
       wholeDamage := 0;
       if dcard2.hp <= 0 then begin
          card2_2.visible := false;
+         dcard2.CardPosition := 0;
       end;
    end;
 end;
@@ -568,6 +643,7 @@ begin
       wholeDamage := 0;
       if dcard3.hp <= 0 then begin
          card2_3.visible := false;
+         dcard3.CardPosition := 0;
       end;
    end;
 end;
@@ -582,11 +658,13 @@ begin
       wholeDamage := 0;
       if dcard4.hp <= 0 then begin
          card2_4.visible := false;
+         dcard4.CardPosition := 0;
       end;
    end;
 end;
 
-//Dragging Painful stuff:
+
+//Drag And Drop
 
 
 //Karte 1.1
@@ -600,7 +678,6 @@ begin
     card1_1.BeginDrag(false);
   end;
 end;
-
 procedure TshowIngame.card1_1MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
@@ -610,7 +687,6 @@ begin
      card1_1.top := card1_1.top + Y - card1_1.height div 2;
   end;
 end;
-
 procedure TshowIngame.card1_1MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
@@ -622,6 +698,7 @@ begin
      player1.Mana := player1.Mana-card1.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card1.cardIsPlaced := true;
+     card1.CardPosition := 1;
   end
   else if (card1_1.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) and not (card1.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_1.Top := cardSlot6.top;
@@ -630,6 +707,7 @@ begin
      player1.Mana := player1.Mana-card1.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card1.cardIsPlaced := true;
+     card1.CardPosition := 2;
   end
   else if (card1_1.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) and not (card1.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_1.Top := cardSlot7.top;
@@ -638,6 +716,7 @@ begin
      player1.Mana := player1.Mana-card1.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card1.cardIsPlaced := true;
+     card1.CardPosition := 3;
   end
   else if (card1_1.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) and not (card1.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_1.Top := cardSlot8.top;
@@ -646,6 +725,7 @@ begin
      player1.Mana := player1.Mana-card1.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card1.cardIsPlaced := true;
+     card1.CardPosition := 4;
   end
   else begin
    card1_1.Left:=oldleft;
@@ -664,7 +744,6 @@ begin
   card1_2.BeginDrag(false);
   end;
 end;
-
 procedure TshowIngame.card1_2MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
@@ -674,7 +753,6 @@ begin
      card1_2.top := card1_2.top + Y - card1_2.height div 2;
   end;
 end;
-
 procedure TshowIngame.card1_2MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
@@ -686,6 +764,7 @@ begin
      player1.Mana := player1.Mana-card2.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card2.cardIsPlaced := true;
+     card2.CardPosition := 1;
   end
   else if (card1_2.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) and not (card2.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_2.Top := cardSlot6.top;
@@ -694,6 +773,7 @@ begin
      player1.Mana := player1.Mana-card2.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card2.cardIsPlaced := true;
+     card2.CardPosition := 2;
   end
   else if (card1_2.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) and not (card2.cardIsPlaced = true )AND (player2hasturn)  then begin
      card1_2.Top := cardSlot7.top;
@@ -702,6 +782,7 @@ begin
      player1.Mana := player1.Mana-card2.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card2.cardIsPlaced := true;
+     card2.CardPosition := 3;
   end
   else if (card1_2.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) and not (card2.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_2.Top := cardSlot8.top;
@@ -710,6 +791,7 @@ begin
      player1.Mana := player1.Mana-card2.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card2.cardIsPlaced := true;
+     card2.CardPosition := 4;
   end
   else begin
    card1_2.Left:=oldleft;
@@ -718,7 +800,6 @@ begin
 end;
 
 //Karte 1.3
-
 procedure TshowIngame.card1_3MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
@@ -728,7 +809,6 @@ begin
   card1_3.BeginDrag(false);
   end;
 end;
-
 procedure TshowIngame.card1_3MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
@@ -738,7 +818,6 @@ begin
      card1_3.top := card1_3.top + Y - card1_3.height div 2;
   end;
 end;
-
 procedure TshowIngame.card1_3MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
@@ -750,6 +829,7 @@ begin
      player1.Mana := player1.Mana-card3.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card3.cardIsPlaced := true;
+     card3.CardPosition := 1;
   end
   else if (card1_3.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) and not (card3.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_3.Top := cardSlot6.top;
@@ -758,6 +838,7 @@ begin
      player1.Mana := player1.Mana-card3.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card3.cardIsPlaced := true;
+     card3.CardPosition := 2;
   end
   else if (card1_3.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) and not (card3.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_3.Top := cardSlot7.top;
@@ -766,6 +847,7 @@ begin
      player1.Mana := player1.Mana-card3.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card3.cardIsPlaced := true;
+     card3.CardPosition := 3;
   end
   else if (card1_3.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) and not (card3.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_3.Top := cardSlot8.top;
@@ -774,6 +856,7 @@ begin
      player1.Mana := player1.Mana-card3.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card3.cardIsPlaced := true;
+     card3.CardPosition := 4;
   end
   else begin
    card1_3.Left:=oldleft;
@@ -792,7 +875,6 @@ begin
   card1_4.BeginDrag(false);
   end;
 end;
-
 procedure TshowIngame.card1_4MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
@@ -802,7 +884,6 @@ begin
      card1_4.top := card1_4.top + Y - card1_4.height div 2;
   end;
 end;
-
 procedure TshowIngame.card1_4MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
@@ -814,6 +895,7 @@ begin
      player1.Mana := player1.Mana-card4.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card4.cardIsPlaced := true;
+     card4.CardPosition := 1;
   end
   else if (card1_4.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) and not (card4.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_4.Top := cardSlot6.top;
@@ -822,6 +904,7 @@ begin
      player1.Mana := player1.Mana-card4.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card4.cardIsPlaced := true;
+     card4.CardPosition := 2;
   end
   else if (card1_4.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) and not (card4.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_4.Top := cardSlot7.top;
@@ -830,6 +913,7 @@ begin
      player1.Mana := player1.Mana-card4.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card4.cardIsPlaced := true;
+     card4.CardPosition := 3;
   end
   else if (card1_4.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) and not (card4.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_4.Top := cardSlot8.top;
@@ -838,6 +922,7 @@ begin
      player1.Mana := player1.Mana-card4.manacost;
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card4.cardIsPlaced := true;
+     card4.CardPosition := 4;
   end
   else begin
    card1_4.Left:=oldleft;
@@ -856,7 +941,6 @@ begin
   card2_1.BeginDrag(false);
   end;
 end;
-
 procedure TshowIngame.card2_1MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
@@ -866,7 +950,6 @@ begin
      card2_1.top := card2_1.top + Y - card2_1.height div 2;
   end;
 end;
-
 procedure TshowIngame.card2_1MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
@@ -878,6 +961,7 @@ begin
      player2.Mana := player2.Mana-dcard1.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard1.cardIsPlaced := true;
+     dcard1.CardPosition := 1;
   end
   else if ((card2_1.top + card2_1.height) >= cardSlot2.top) and (lockedfield[6] = false) and not (dcard1.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_1.Top := cardSlot2.top;
@@ -886,6 +970,7 @@ begin
      player2.Mana := player2.Mana-dcard1.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard1.cardIsPlaced := true;
+     dcard1.CardPosition := 2;
   end
   else if ((card2_1.top + card2_1.height)  >= cardSlot3.top) and (lockedfield[7] = false) and not (dcard1.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_1.Top := cardSlot3.top;
@@ -894,6 +979,7 @@ begin
      player2.Mana := player2.Mana-dcard1.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard1.cardIsPlaced := true;
+     dcard1.CardPosition := 3;
   end
   else if ((card2_1.top + card2_1.height) >= cardSlot4.top) and (lockedfield[8] = false) and not (dcard1.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_1.Top := cardSlot4.top;
@@ -902,6 +988,7 @@ begin
      player2.Mana := player2.Mana-dcard1.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard1.cardIsPlaced := true;
+     dcard1.CardPosition := 4;
   end
   else begin
    card2_1.Left:=oldleft;
@@ -920,7 +1007,6 @@ begin
   card2_2.BeginDrag(false);
   end;
 end;
-
 procedure TshowIngame.card2_2MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
@@ -929,7 +1015,6 @@ begin
      card2_2.top := card2_2.top + Y - card2_2.height div 2;
   end;
 end;
-
 procedure TshowIngame.card2_2MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
@@ -941,6 +1026,7 @@ begin
      player2.Mana := player2.Mana-dcard2.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard2.cardIsPlaced := true;
+     dcard2.CardPosition := 1;
   end
   else if ((card2_2.top + card2_2.height) >= cardSlot2.top) and (lockedfield[6] = false) and not (dcard2.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_2.Top := cardSlot2.top;
@@ -950,6 +1036,7 @@ begin
      player2.Mana := player2.Mana-dcard2.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard2.cardIsPlaced := true;
+     dcard2.CardPosition := 2;
   end
   else if ((card2_2.top + card2_2.height) >= cardSlot3.top) and (lockedfield[7] = false) and not (dcard2.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_2.Top := cardSlot3.top;
@@ -958,6 +1045,7 @@ begin
      player2.Mana := player2.Mana-dcard2.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard2.cardIsPlaced := true;
+     dcard2.CardPosition := 3;
   end
   else if ((card2_2.top + card2_2.height) >= cardSlot4.top) and (lockedfield[8] = false) and not (dcard2.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_2.Top := cardSlot4.top;
@@ -966,6 +1054,7 @@ begin
      player2.Mana := player2.Mana-dcard2.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard2.cardIsPlaced := true;
+     dcard2.CardPosition := 4;
   end
   else begin
    card2_2.Left:=oldleft;
@@ -985,7 +1074,6 @@ begin
   card2_3.BeginDrag(false);
   end;
 end;
-
 procedure TshowIngame.card2_3MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
@@ -995,7 +1083,6 @@ begin
      card2_3.top := card2_3.top + Y - card2_3.height div 2;
   end;
 end;
-
 procedure TshowIngame.card2_3MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
@@ -1007,6 +1094,7 @@ begin
      player2.Mana := player2.Mana-dcard3.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard3.cardIsPlaced := true;
+     dcard3.CardPosition := 1;
   end
   else if ((card2_3.top + card2_3.height) >= cardSlot2.top) and (lockedfield[6] = false) and not (dcard3.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_3.Top := cardSlot2.top;
@@ -1015,6 +1103,7 @@ begin
      player2.Mana := player2.Mana-dcard3.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard3.cardIsPlaced := true;
+     dcard3.CardPosition := 2;
   end
   else if ((card2_3.top + card2_3.height) >= cardSlot3.top) and (lockedfield[7] = false) and not (dcard3.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_3.Top := cardSlot3.top;
@@ -1023,6 +1112,7 @@ begin
      player2.Mana := player2.Mana-dcard3.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard3.cardIsPlaced := true;
+     dcard3.CardPosition := 3;
   end
   else if ((card2_3.top + card2_3.height) >= cardSlot4.top) and (lockedfield[8] = false) and not (dcard3.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_3.Top := cardSlot4.top;
@@ -1031,6 +1121,7 @@ begin
      player2.Mana := player2.Mana-dcard3.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard3.cardIsPlaced := true;
+     dcard3.CardPosition := 4;
   end
   else begin
    card2_3.Left:=oldleft;
@@ -1049,7 +1140,6 @@ begin
   card2_4.BeginDrag(false);
   end;
 end;
-
 procedure TshowIngame.card2_4MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
@@ -1059,7 +1149,6 @@ begin
      card2_4.top := card2_4.top + Y - card2_4.height div 2;
   end;
 end;
-
 procedure TshowIngame.card2_4MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
@@ -1071,6 +1160,7 @@ begin
      player2.Mana := player2.Mana-dcard4.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard4.cardIsPlaced := true;
+     dcard4.CardPosition := 1;
   end
   else if ((card2_4.top + card2_4.height) >= cardSlot2.top) and (lockedfield[6] = false) and not (dcard4.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_4.Top := cardSlot2.top;
@@ -1079,6 +1169,7 @@ begin
      player2.Mana := player2.Mana-dcard4.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard4.cardIsPlaced := true;
+     dcard4.CardPosition := 2;
   end
   else if ((card2_4.top + card2_4.height) >= cardSlot3.top) and (lockedfield[7] = false) and not (dcard4.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_4.Top := cardSlot3.top;
@@ -1087,6 +1178,7 @@ begin
      player2.Mana := player2.Mana-dcard4.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard4.cardIsPlaced := true;
+     dcard4.CardPosition := 3;
   end
   else if ((card2_4.top + card2_4.height) >= cardSlot4.top) and (lockedfield[8] = false) and not (dcard4.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_4.Top := cardSlot4.top;
@@ -1095,11 +1187,17 @@ begin
      player2.Mana := player2.Mana-dcard4.manacost;
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard4.cardIsPlaced := true;
+     dcard4.CardPosition := 4;
   end
   else begin
    card2_4.Left:=oldleft;
    card2_4.top:=oldtop;
   end;
+end;
+
+procedure TshowIngame.closeButtonClick(Sender: TObject);
+begin
+    close;
 end;
 
 
@@ -1112,7 +1210,7 @@ end;
 
 procedure TshowIngame.turnClick(Sender: TObject);
 begin
-   k := k + 1;
+    k := k + 1;
 
    if k >= 2 then begin
       attackButton.enabled := true;
@@ -1157,17 +1255,103 @@ begin
     attackMode := false;
     wholeDamage := 0;
 
-
 end;
 
-procedure TshowIngame.FormShow(Sender: TObject);
-begin
-   if autoclose then begin
-   autoclose := false;
-   showingame.hide;
-   end;
- end;
+//Zwischenmenü aufrufen und nutzen
 
+procedure TshowIngame.turnKeyUp(Sender: TObject; var Key: Word;            //Diese Prozedur kann gelöscht werden, sobald ein Image den Turn - Button ersetzt
+  Shift: TShiftState);
+begin
+   if (Key = 27)  and (openWindow = false) then begin
+        menuPanel.Width := Round(currentWidth * 0.5);
+        menuPanel.Height := Round(currentHeight * 0.5);
+        menuPanel.left := currentWidth div 2 - menuPanel.width div 2;
+        menuPanel.top := currentHeight div 2 - menuPanel.Height div 2;
+        menuPanel.Visible := true;
+        menuPanel.BringToFront;
+
+        menuButton.width := Round(menuPanel.width * 0.7);
+        menuButton.height := Round(menuPanel.height * 0.2);
+        menuButton.left := Round(menuPanel.width * 0.5) + menuPanel.left - menuButton.width div 2;
+        menuButton.top := currentHeight div 2 - menuButton.height div 2;
+        menuButton.Visible := true;
+
+        continueButton.width := menuButton.width;
+        continueButton.height := menuButton.height;
+        continueButton.left := menuButton.left;
+        continueButton.Top := menuButton.Top - continueButton.height;
+        continueButton.visible := true;
+
+        closeButton.width := continueButton.width;
+        closeButton.height := continueButton.height;
+        closeButton.left := continueButton.left;
+        closeButton.top := menuButton.top + closeButton.height;
+        closeButton.visible := true;
+        openWindow := true;
+    end
+    else begin
+       closeButton.visible := false;
+       continueButton.visible := false;
+       menuButton.visible := false;
+       menuPanel.visible := false;
+       openWindow := false;
+    end;
+end;
+procedure TshowIngame.FormKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+    if (Key = 27)  and (openWindow = false) then begin
+        menuPanel.Width := Round(currentWidth * 0.5);
+        menuPanel.Height := Round(currentHeight * 0.5);
+        menuPanel.left := currentWidth div 2 - menuPanel.width div 2;
+        menuPanel.top := currentHeight div 2 - menuPanel.Height div 2;
+        menuPanel.Visible := true;
+        menuPanel.BringToFront;
+
+        menuButton.width := Round(menuPanel.width * 0.7);
+        menuButton.height := Round(menuPanel.height * 0.2);
+        menuButton.left := Round(menuPanel.width * 0.5) + menuPanel.left - menuButton.width div 2;
+        menuButton.top := currentHeight div 2 - menuButton.height div 2;
+        menuButton.Visible := true;
+
+        continueButton.width := menuButton.width;
+        continueButton.height := menuButton.height;
+        continueButton.left := menuButton.left;
+        continueButton.Top := menuButton.Top - continueButton.height;
+        continueButton.visible := true;
+
+        closeButton.width := continueButton.width;
+        closeButton.height := continueButton.height;
+        closeButton.left := continueButton.left;
+        closeButton.top := menuButton.top + closeButton.height;
+        closeButton.visible := true;
+        openWindow := true;
+    end
+    else begin
+       closeButton.visible := false;
+       continueButton.visible := false;
+       menuButton.visible := false;
+       menuPanel.visible := false;
+       openWindow := false;
+    end;
+end;
+procedure TshowIngame.menuButtonClick(Sender: TObject);
+begin
+   hide;
+   closeButton.visible := false;
+   continueButton.visible := false;
+   menuButton.visible := false;
+   menuPanel.visible := false;
+   openWindow := false;
+end;
+procedure TshowIngame.continueButtonClick(Sender: TObject);
+begin
+  closeButton.visible := false;
+  continueButton.visible := false;
+  menuButton.visible := false;
+  menuPanel.visible := false;
+  openWindow :=  false;
+end;
 procedure TshowIngame.exitButtonClick(Sender: TObject);
 begin
    close;
