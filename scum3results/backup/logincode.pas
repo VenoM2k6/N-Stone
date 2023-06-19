@@ -13,6 +13,7 @@ type
 
   Tloginmenu = class(TForm)
     background: TImage;
+    Edit1: TEdit;
     finish1: TButton;
     finish2: TButton;
     classchooser1: TComboBox;
@@ -61,6 +62,10 @@ var
 
   createAccount1, createAccount2: string;
   PlayerDataFile: TextFile;
+  relativePath: string;
+  absolutePath: string;
+  currentPath: string; //Das Abspeichern ist etwas komplizierter => Damit es auf jedem Gerät funktioniert arbeite ich mit relativen Pfaden
+
   finished: integer;
 
   //Anzeigeeinstellungen
@@ -104,7 +109,7 @@ begin
   player1.height := currentHeight div 16;
   player1.width := currentWidth div 10;
   player1.left := Round(1.5 * currentWidth / 4) - player1.width div 2;
-  player1.top := currentHeight div 2;
+  player1.top := currentHeight div 3;
   player1.font.size := 25;
 
   signin1.Height := player1.height;
@@ -271,8 +276,12 @@ end;
 //Abspeichern der Daten
 procedure Tloginmenu.finish1Click(Sender: TObject);
 begin
+
    if inmode1 then begin
-     AssignFile(PlayerDataFile, 'C:\Users\meist\Desktop\clone\N-Stone\scum3results\Playerdata.txt');
+     relativePath := '\Playerdata.txt';
+     currentPath := GetCurrentDir;
+     absolutePath :=  currentPath + relativePath;
+     AssignFile(PlayerDataFile, absolutePath);
      Reset(PlayerDataFile);
 
      while not EOF(PlayerDataFile) do begin

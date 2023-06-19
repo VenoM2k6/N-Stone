@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos X="36" Y="2"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="87"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -21,10 +21,10 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="535"/>
-        <CursorPos X="19" Y="547"/>
+        <TopLine Value="417"/>
+        <CursorPos X="37" Y="542"/>
         <FoldState Value=" T3uT0B6 picjD0E015]Bdjf084 pjIja085]9Qk3[984[96Jjg0b3 Pi9ig0X"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="87"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -33,14 +33,14 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="2"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="70"/>
       </Unit>
       <Unit>
         <Filename Value="cardclass.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="5"/>
         <CursorPos X="77" Y="23"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="70"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -52,7 +52,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="33"/>
         <CursorPos X="32" Y="52"/>
-        <UsageCount Value="55"/>
+        <UsageCount Value="56"/>
         <Bookmarks Count="1">
           <Item0 X="5" Y="97" ID="5"/>
         </Bookmarks>
@@ -68,13 +68,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="51"/>
         <CursorPos X="5" Y="65"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="43"/>
       </Unit>
       <Unit>
         <Filename Value="closespecificforms.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="6"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -83,11 +83,10 @@
         <ComponentName Value="loginmenu"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="102"/>
-        <CursorPos X="37" Y="107"/>
-        <FoldState Value=" T3lL037 PiIiF0\"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="34"/>
+        <TopLine Value="215"/>
+        <CursorPos X="25" Y="283"/>
+        <FoldState Value=" T3lT037 PiIiF0*"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -120,18 +119,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="74" Column="5" TopLine="42"/>
-      </Position>
-      <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="78" Column="43" TopLine="46"/>
-      </Position>
-      <Position>
-        <Filename Value="lobbycode.pas"/>
-        <Caret Line="83" Column="83" TopLine="62"/>
-      </Position>
       <Position>
         <Filename Value="logincode.pas"/>
         <Caret Line="104" TopLine="99"/>
@@ -239,6 +226,18 @@
       <Position>
         <Filename Value="ingame.pas"/>
         <Caret Line="510" Column="58" TopLine="498"/>
+      </Position>
+      <Position>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="282" Column="49" TopLine="275"/>
+      </Position>
+      <Position>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="285" Column="7" TopLine="275"/>
+      </Position>
+      <Position>
+        <Filename Value="logincode.pas"/>
+        <Caret Line="283" Column="50" TopLine="156"/>
       </Position>
     </JumpHistory>
     <RunParams>
