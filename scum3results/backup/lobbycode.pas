@@ -13,9 +13,13 @@ type
 
   Tlobby = class(TForm)
     background: TImage;
+    inventory1: TImage;
+    inventory2: TImage;
     playbutton: TImage;
     settingsbutton: TImage;
     closebutton: TImage;
+    procedure backgroundClick(Sender: TObject);
+    procedure backgroundDblClick(Sender: TObject);
     procedure closebuttonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure playbuttonClick(Sender: TObject);
@@ -31,6 +35,8 @@ var
   lobby: Tlobby;
   currentHeight, currentWidth: integer;
 
+  logincompleted: boolean;
+
 implementation
 
 {$R *.lfm}
@@ -41,7 +47,6 @@ procedure Tlobby.FormCreate(Sender: TObject);
 begin
 
     lobby.show;
-    loginmenu.show;
 
     WindowState := wsMaximized;
     currentHeight := Screen.height;
@@ -67,13 +72,34 @@ begin
     closebutton.top := settingsbutton.Top + closebutton.height;
     closebutton.left := playbutton.left;
 
+    inventory1.height := screen.height div 3;
+    inventory1.width := screen.width div 4;
+    inventory1.left := screen.width div 120;
+    inventory1.top := screen.height div 160;
 
-
+    inventory2.height := inventory1.height;
+    inventory2.width := inventory1.width;
+    inventory2.top := inventory1.top;
+    inventory2.left := screen.width - inventory1.left - Round(6*inventory2.width / 8.5) ;
 end;
 
 procedure Tlobby.closebuttonClick(Sender: TObject);
 begin
   close;
+end;
+
+procedure Tlobby.backgroundClick(Sender: TObject);
+begin
+   if not logincompleted then begin
+     loginmenu.show;
+   end;
+end;
+
+procedure Tlobby.backgroundDblClick(Sender: TObject);
+begin
+   if not logincompleted then begin
+     loginmenu.show;
+   end;
 end;
 
 procedure Tlobby.playbuttonClick(Sender: TObject);

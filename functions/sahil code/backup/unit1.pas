@@ -153,7 +153,6 @@ end;
 
 procedure Tmenu.startButtonClick(Sender: TObject);
 begin
-   Form11.Show;
    hide;
 end;
 

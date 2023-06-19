@@ -5,7 +5,7 @@ unit ingame;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, playerclass, cardclass;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, playerclass, cardclass, logincode;
 
 type
 
@@ -13,6 +13,14 @@ type
 
   TshowIngame = class(TForm)
     attackButton: TButton;
+    card2_5: TImage;
+    card1_5: TImage;
+    card2_6: TImage;
+    card1_6: TImage;
+    card2_7: TImage;
+    card1_7: TImage;
+    card1_8: TImage;
+    card2_8: TImage;
     menuButton: TButton;
     continueButton: TButton;
     closeButton: TButton;
@@ -127,7 +135,7 @@ var
   attackMode: boolean; //Damage System
   wholeDamage: integer;
 
-  card1, card2, card3, card4, dcard1, dcard2, dcard3, dcard4: TCard;  //Spielkarten
+  card1, card2, card3, card4, card5, card6, card7, card8, dcard1, dcard2, dcard3, dcard4, dcard5, dcard6, dcard7, dcard8: TCard;  //Spielkarten
 
   player1, player2: TPlayer;
 
@@ -138,9 +146,11 @@ var
   currentHeight, currentWidth: integer;  //Screenanpassung
 
   a, b, i, j: integer;                   //Kartensortiersystem
-  cards1: array[1..4] of TImage;
-  cards2: array[1..4] of TImage;
-  cardscache: array[1..5] of TImage;
+  cards1: array[1..8] of TImage;
+  cards2: array[1..8] of TImage;
+  cards1Pos: array[1..8] of integer;
+  cards2Pos: array[1..8] of integer;
+
   lockedslots2: array[1..4] of boolean;
   lockedslots1: array[1..4] of boolean;
   cache: TImage;
@@ -189,46 +199,89 @@ begin
     card2 := TCard.Create;
     card3 := TCard.Create;
     card4 := TCard.Create;
+    card5 := TCard.Create;
+    card6 := TCard.Create;
+    card7 := TCard.Create;
+    card8 := TCard.Create;
+
     dcard1 := TCard.Create;
     dcard2 := TCard.Create;
     dcard3 := TCard.Create;
     dcard4 := TCard.Create;
+    dcard5 := TCard.Create;
+    dcard6 := TCard.Create;
+    dcard7 := TCard.Create;
+    dcard8 := TCard.Create;
 
     card1.hp := 5;
     card2.hp := 8;
     card3.hp := 10;
     card4.hp := 3;
+    card5.hp := 5;
+    card6.hp := 8;
+    card7.hp := 10;
+    card8.hp := 3;
+
     dcard1.hp := card1.hp;
     dcard2.hp := card2.hp;
     dcard3.hp := card3.hp;
     dcard4.hp := card4.hp;
+    dcard5.hp := card1.hp;
+    dcard6.hp := card2.hp;
+    dcard7.hp := card3.hp;
+    dcard8.hp := card4.hp;
 
     card1.damage := 10;
     card2.damage := 3;
     card3.damage := 2;
     card4.damage := 8;
+    card5.damage := 10;
+    card6.damage := 3;
+    card7.damage := 2;
+    card8.damage := 8;
+
     dcard1.damage := card1.damage;
     dcard2.damage := card2.damage;
     dcard3.damage := card3.damage;
     dcard4.damage := card4.damage;
+    dcard5.damage := card5.damage;
+    dcard6.damage := card6.damage;
+    dcard7.damage := card7.damage;
+    dcard8.damage := card8.damage;
 
     card1.manacost := 6;
     card2.manacost := 7;
     card3.manacost := 9;
     card4.manacost := 4;
+    card5.manacost := 6;
+    card6.manacost := 7;
+    card7.manacost := 9;
+    card8.manacost := 4;
     dcard1.manacost := card1.manacost;
     dcard2.manacost := card2.manacost;
     dcard3.manacost := card3.manacost;
     dcard4.manacost := card4.manacost;
+    dcard5.manacost := card5.manacost;
+    dcard6.manacost := card6.manacost;
+    dcard7.manacost := card7.manacost;
+    dcard8.manacost := card8.manacost;
 
     card1.CardPosition := 0;
     card2.CardPosition := 0;
     card3.CardPosition := 0;
     card4.CardPosition := 0;
+    card5.CardPosition := 0;
+    card6.CardPosition := 0;
+    card7.CardPosition := 0;
+    card8.CardPosition := 0;
     dcard1.CardPosition := 0;
     dcard2.CardPosition := 0;
     dcard3.CardPosition := 0;
     dcard4.CardPosition := 0;
+    dcard5.CardPosition := 0;
+    dcard6.CardPosition := 0;
+    dcard7.CardPosition := 0;
+    dcard8.CardPosition := 0;
 
     //Spieler erstellen
 
@@ -267,15 +320,25 @@ begin
     lockedslots2[4]:=false;
 
     //Karten dem Image-Array zuweisen
+
     cards1[1] := card1_1;
     cards1[2] := card1_2;
     cards1[3] := card1_3;
     cards1[4] := card1_4;
+    cards1[5] := card1_5;
+    cards1[6] := card1_6;
+    cards1[7] := card1_7;
+    cards1[8] := card1_8;
 
     cards2[1] := card2_1;
     cards2[2] := card2_2;
     cards2[3] := card2_3;
     cards2[4] := card2_4;
+    cards2[5] := card2_5;
+    cards2[6] := card2_6;
+    cards2[7] := card2_7;
+    cards2[8] := card2_8;
+
 
     //Status über die Felder auf denen man etwas platzieren kann => Wenn diese belegt sind, wird lockedfield[1] true gesetzt
 
@@ -442,21 +505,6 @@ begin
    pullCards.Visible := false;
    pullCards.enabled := false;
    turn.visible := true;
-   {Randomize;
-   for i := 4 downto 1 do
-     begin
-          j := Random(i+1);
-          cache := cards1[i];
-          cards1[i] := cards1[j];
-          cards1[j] := cache;
-   end;
-   for i := 4 downto 1 do
-     begin
-          j := Random(i+1);
-          cache := cards2[i];
-          cards2[i] := cards2[j];
-          cards2[j] := cache;
-     end;}
 
    for a := 1 to 4 do begin
      if lockedslots1[1] = false then begin
@@ -466,6 +514,7 @@ begin
          cards1[a].top := player1Slot1.top;
          cards1[a].visible := true;
          lockedslots1[1]:= true;
+         cards1Pos[a] := 1;
      end
      else if lockedslots1[2] = false then begin
          cards1[a].width := player1Slot2.width;
@@ -474,6 +523,7 @@ begin
          cards1[a].top := player1Slot2.top;
          cards1[a].visible := true;
          lockedslots1[2] := true;
+         cards1Pos[a] := 2;
       end
       else if lockedslots1[3] = false then begin
          cards1[a].width := player1Slot3.width;
@@ -482,6 +532,7 @@ begin
          cards1[a].top := player1Slot3.top;
          cards1[a].visible := true;
          lockedslots1[3]:=true;
+         cards1Pos[a] := 3;
       end
       else if lockedslots1[4] = false then begin
          cards1[a].width := player1Slot4.width;
@@ -490,6 +541,7 @@ begin
          cards1[a].top := player1Slot4.top;
          cards1[a].visible := true;
          lockedslots1[4]:=true;
+         cards1Pos[a] := 4;
       end;
    end;
    for b := 1 to 4 do begin
@@ -500,6 +552,7 @@ begin
          cards2[b].top := player2Slot1.top;
          cards2[b].visible := true;
          lockedslots2[1]:= true;
+         cards2Pos[a] := 1;
      end
      else if lockedslots2[2] = false then begin
          cards2[b].width := player2Slot2.width;
@@ -508,6 +561,7 @@ begin
          cards2[b].top := player2Slot2.top;
          cards2[b].visible := true;
          lockedslots2[2] := true;
+         cards2Pos[a] := 2;
       end
       else if lockedslots2[3] = false then begin
          cards2[b].width := player2Slot3.width;
@@ -516,6 +570,7 @@ begin
          cards2[b].top := player2Slot3.top;
          cards2[b].visible := true;
          lockedslots2[3]:=true;
+         cards2Pos[a] := 3;
       end
       else if lockedslots2[4] = false then begin
          cards2[b].width := player2Slot4.width;
@@ -524,6 +579,7 @@ begin
          cards2[b].top := player2Slot4.top;
          cards2[b].visible := true;
          lockedslots2[4]:=true;
+         cards2Pos[a] := 4;
       end;
    end;
 end;
