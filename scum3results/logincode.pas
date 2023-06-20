@@ -78,6 +78,7 @@ implementation
 
 procedure Tloginmenu.FormCreate(Sender: TObject);
 begin
+
   relativePath := '\Playerdata.txt';
   currentPath := GetCurrentDir;
   absolutePath :=  currentPath + relativePath;
@@ -219,6 +220,7 @@ end;
 //Anzeigen des Einlogmenüs
 procedure Tloginmenu.signin1Click(Sender: TObject);
 begin
+  close;
   signin1.visible := false;
   signup1.Visible := false;
   name1.visible := true;

@@ -13,7 +13,6 @@ type
 
   Tloginmenu = class(TForm)
     background: TImage;
-    Edit1: TEdit;
     finish1: TButton;
     finish2: TButton;
     classchooser1: TComboBox;
@@ -79,6 +78,16 @@ implementation
 
 procedure Tloginmenu.FormCreate(Sender: TObject);
 begin
+
+  close;
+
+
+
+
+  relativePath := '\Playerdata.txt';
+  currentPath := GetCurrentDir;
+  absolutePath :=  currentPath + relativePath;
+
   background.sendtoback;
 
   WindowState := wsMaximized;
@@ -278,9 +287,6 @@ procedure Tloginmenu.finish1Click(Sender: TObject);
 begin
 
    if inmode1 then begin
-     relativePath := '\Playerdata.txt';
-     currentPath := GetCurrentDir;
-     absolutePath :=  currentPath + relativePath;
      AssignFile(PlayerDataFile, absolutePath);
      Reset(PlayerDataFile);
 
@@ -305,7 +311,7 @@ begin
    end;
    if upmode1 then begin
       createAccount1 := name1.text + '_' + password1.text + '_' + classchooser1.text;
-      AssignFile(PlayerDataFile, 'C:\Users\meist\Desktop\clone\N-Stone\scum3results\Playerdata.txt');
+      AssignFile(PlayerDataFile, absolutePath);
       Append(PlayerDataFile);
       WriteLn(PlayerDataFile, createAccount1);
       CloseFile(PlayerDataFile);
@@ -320,7 +326,7 @@ begin
      password1.visible := false;
      classchooser1.visible := false;
    end;
-   if finished = 2 then begin                //Finish fixxen
+   if finished = 2 then begin
       close;
       logincompleted := true;
    end;
@@ -328,7 +334,7 @@ end;
 procedure Tloginmenu.finish2Click(Sender: TObject);
 begin
    if inmode2 then begin
-     AssignFile(PlayerDataFile, 'C:\Users\meist\Desktop\clone\N-Stone\scum3results\Playerdata.txt');
+     AssignFile(PlayerDataFile, absolutePath);
      Reset(PlayerDataFile);
      while not EOF(PlayerDataFile) do begin
         ReadLn(PlayerDataFile, fullyreadstring);
@@ -352,7 +358,7 @@ begin
 
    if upmode2 then begin
       createAccount2 := name2.text + '_' + password2.text + '_' + classchooser2.text;
-      AssignFile(PlayerDataFile, 'C:\Users\meist\Desktop\clone\N-Stone\scum3results\Playerdata.txt');
+      AssignFile(PlayerDataFile, absolutePath);
       Append(PlayerDataFile);
       WriteLn(PlayerDataFile, createAccount2);
       CloseFile(PlayerDataFile);

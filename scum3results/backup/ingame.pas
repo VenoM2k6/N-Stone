@@ -21,6 +21,7 @@ type
     card1_7: TImage;
     card1_8: TImage;
     card2_8: TImage;
+    Edit1: TEdit;
     menuButton: TButton;
     continueButton: TButton;
     closeButton: TButton;
@@ -116,9 +117,9 @@ type
     procedure menuButtonClick(Sender: TObject);
     procedure player1imagefieldClick(Sender: TObject);
     procedure player2imagefieldClick(Sender: TObject);
-    procedure pullCardsClick(Sender: TObject);
     procedure turnClick(Sender: TObject);
     procedure turnKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure cardsPull;
   private
 
   public
@@ -150,7 +151,10 @@ var
   cards2: array[1..8] of TImage;
   cards1Pos: array[1..8] of integer;
   cards2Pos: array[1..8] of integer;
+  cards1Pl: array[1..8] of boolean;
+  cards2Pl: array[1..8] of boolean;
 
+  firstTime: boolean;
   lockedslots2: array[1..4] of boolean;
   lockedslots1: array[1..4] of boolean;
   cache: TImage;
@@ -174,12 +178,108 @@ begin
      autoclose := false;
      showingame.hide;
    end;
+
  end;
 
 //Alle Werte die festgelegt werden müssen, bevor der Nutzer Eingaben gemacht hat
+procedure TshowIngame.cardsPull;
+begin
 
+   turn.visible := true;
+
+   for a := 1 to Length(cards1) do begin
+    if not cards1Pl[a] then begin
+     if lockedslots1[1] = false then begin
+         cards1[a].width := player1Slot1.width;
+         cards1[a].height := player1Slot1.height;
+         cards1[a].left := player1Slot1.left;
+         cards1[a].top := player1Slot1.top;
+         cards1[a].visible := true;
+         lockedslots1[1]:= true;
+         cards1Pos[a] := 1;
+         cards1Pl[a] := true;
+     end
+     else if lockedslots1[2] = false then begin
+         cards1[a].width := player1Slot2.width;
+         cards1[a].height := player1Slot2.height;
+         cards1[a].left := player1Slot2.left;
+         cards1[a].top := player1Slot2.top;
+         cards1[a].visible := true;
+         lockedslots1[2] := true;
+         cards1Pos[a] := 2;
+         cards1Pl[a] := true;
+      end
+      else if lockedslots1[3] = false then begin
+         cards1[a].width := player1Slot3.width;
+         cards1[a].height := player1Slot3.height;
+         cards1[a].left := player1Slot3.left;
+         cards1[a].top := player1Slot3.top;
+         cards1[a].visible := true;
+         lockedslots1[3]:=true;
+         cards1Pos[a] := 3;
+         cards1Pl[a] := true;
+      end
+      else if lockedslots1[4] = false then begin
+         cards1[a].width := player1Slot4.width;
+         cards1[a].height := player1Slot4.height;
+         cards1[a].left := player1Slot4.left;
+         cards1[a].top := player1Slot4.top;
+         cards1[a].visible := true;
+         lockedslots1[4]:=true;
+         cards1Pos[a] := 4;
+         cards1Pl[a] := true;
+       end;
+      end;
+    end;
+   for b := 1 to Length(cards2) do begin
+    if not cards2Pl[b] then begin
+     if lockedslots2[1] = false then begin
+         cards2[b].width := player2Slot1.width;
+         cards2[b].height := player2Slot1.height;
+         cards2[b].left := player2Slot1.left;
+         cards2[b].top := player2Slot1.top;
+         cards2[b].visible := true;
+         lockedslots2[1]:= true;
+         cards2Pos[b] := 1;
+         cards2Pl[b] := true;
+     end
+     else if lockedslots2[2] = false then begin
+         cards2[b].width := player2Slot2.width;
+         cards2[b].height := player2Slot2.height;
+         cards2[b].left := player2Slot2.left;
+         cards2[b].top := player2Slot2.top;
+         cards2[b].visible := true;
+         lockedslots2[2] := true;
+         cards2Pos[b] := 2;
+         cards2Pl[b] := true;
+      end
+      else if lockedslots2[3] = false then begin
+         cards2[b].width := player2Slot3.width;
+         cards2[b].height := player2Slot3.height;
+         cards2[b].left := player2Slot3.left;
+         cards2[b].top := player2Slot3.top;
+         cards2[b].visible := true;
+         lockedslots2[3]:=true;
+         cards2Pos[b] := 3;
+         cards2Pl[b] := true;
+      end
+      else if lockedslots2[4] = false then begin
+         cards2[b].width := player2Slot4.width;
+         cards2[b].height := player2Slot4.height;
+         cards2[b].left := player2Slot4.left;
+         cards2[b].top := player2Slot4.top;
+         cards2[b].visible := true;
+         lockedslots2[4]:=true;
+         cards2Pos[b] := 4;
+         cards2Pl[b] := true;
+      end;
+     end;
+   end;
+end;
 procedure TshowIngame.FormCreate(Sender: TObject);
 begin
+    firstTime := false;
+
     //automatische Schließen beim Starten des Programms
 
     autoclose := true;
@@ -372,10 +472,10 @@ begin
 
     //Anzeigeeinstellungen PullCardsbutton
 
-    pullCards.Height := exitButton.height;
+    {pullCards.Height := exitButton.height;
     pullCards.Width := exitButton.width + Round(currentWidth * 1/16 );
     pullCards.Top := exitButton.top - exitButton.height;
-    pullCards.Left := exitButton.left;
+    pullCards.Left := exitButton.left; }
 
     //Anzeigeeinstellungen des Kartendecks
 
@@ -495,93 +595,7 @@ begin
     cardSlot7.top := cardSlot5.top;
     cardSlot8.top := cardSlot5.top;
 
-end;
-
-//Karten ziehen
-//Muss überarbeitet werden
-
-procedure TshowIngame.pullCardsClick(Sender: TObject);
-begin
-   pullCards.Visible := false;
-   pullCards.enabled := false;
-   turn.visible := true;
-
-   for a := 5 to 8 do begin
-     if lockedslots1[1] = false then begin
-         cards1[a].width := player1Slot1.width;
-         cards1[a].height := player1Slot1.height;
-         cards1[a].left := player1Slot1.left;
-         cards1[a].top := player1Slot1.top;
-         cards1[a].visible := true;
-         lockedslots1[1]:= true;
-         cards1Pos[a] := 1;
-     end
-     else if lockedslots1[2] = false then begin
-         cards1[a].width := player1Slot2.width;
-         cards1[a].height := player1Slot2.height;
-         cards1[a].left := player1Slot2.left;
-         cards1[a].top := player1Slot2.top;
-         cards1[a].visible := true;
-         lockedslots1[2] := true;
-         cards1Pos[a] := 2;
-      end
-      else if lockedslots1[3] = false then begin
-         cards1[a].width := player1Slot3.width;
-         cards1[a].height := player1Slot3.height;
-         cards1[a].left := player1Slot3.left;
-         cards1[a].top := player1Slot3.top;
-         cards1[a].visible := true;
-         lockedslots1[3]:=true;
-         cards1Pos[a] := 3;
-      end
-      else if lockedslots1[4] = false then begin
-         cards1[a].width := player1Slot4.width;
-         cards1[a].height := player1Slot4.height;
-         cards1[a].left := player1Slot4.left;
-         cards1[a].top := player1Slot4.top;
-         cards1[a].visible := true;
-         lockedslots1[4]:=true;
-         cards1Pos[a] := 4;
-      end;
-   end;
-   for b := 5 to 8 do begin
-     if lockedslots2[1] = false then begin
-         cards2[b].width := player2Slot1.width;
-         cards2[b].height := player2Slot1.height;
-         cards2[b].left := player2Slot1.left;
-         cards2[b].top := player2Slot1.top;
-         cards2[b].visible := true;
-         lockedslots2[1]:= true;
-         cards2Pos[a] := 1;
-     end
-     else if lockedslots2[2] = false then begin
-         cards2[b].width := player2Slot2.width;
-         cards2[b].height := player2Slot2.height;
-         cards2[b].left := player2Slot2.left;
-         cards2[b].top := player2Slot2.top;
-         cards2[b].visible := true;
-         lockedslots2[2] := true;
-         cards2Pos[a] := 2;
-      end
-      else if lockedslots2[3] = false then begin
-         cards2[b].width := player2Slot3.width;
-         cards2[b].height := player2Slot3.height;
-         cards2[b].left := player2Slot3.left;
-         cards2[b].top := player2Slot3.top;
-         cards2[b].visible := true;
-         lockedslots2[3]:=true;
-         cards2Pos[a] := 3;
-      end
-      else if lockedslots2[4] = false then begin
-         cards2[b].width := player2Slot4.width;
-         cards2[b].height := player2Slot4.height;
-         cards2[b].left := player2Slot4.left;
-         cards2[b].top := player2Slot4.top;
-         cards2[b].visible := true;
-         lockedslots2[4]:=true;
-         cards2Pos[a] := 4;
-      end;
-   end;
+    cardsPull;
 end;
 
 //Angriffsprozeduren
@@ -622,6 +636,7 @@ begin
       if card1.hp <= 0 then begin
          card1_1.visible := false;
          card1.CardPosition := 0;
+         cards1Pl[1]:=true;
       end;
    end;
 end;
@@ -637,6 +652,7 @@ begin
       if card2.hp <= 0 then begin
          card1_2.visible := false;
          card2.CardPosition := 0;
+         cards1Pl[2]:=true;
       end;
    end;
 end;
@@ -652,6 +668,7 @@ begin
       if card3.hp <= 0 then begin
          card1_3.visible := false;
          card3.CardPosition := 0;
+         cards1Pl[3]:=true;
       end;
    end;
 end;
@@ -667,6 +684,7 @@ begin
       if card4.hp <= 0 then begin
          card1_4.visible := false;
          card4.CardPosition := 0;
+         cards1Pl[4]:=true;
       end;
    end;
 end;
@@ -682,6 +700,7 @@ begin
       if dcard1.hp <= 0 then begin
          card2_1.visible := false;
          dcard1.CardPosition := 0;
+         cards2Pl[1]:=true;
       end;
    end;
 end;
@@ -697,6 +716,7 @@ begin
       if dcard2.hp <= 0 then begin
          card2_2.visible := false;
          dcard2.CardPosition := 0;
+         cards2Pl[2]:=true;
       end;
    end;
 end;
@@ -712,6 +732,7 @@ begin
       if dcard3.hp <= 0 then begin
          card2_3.visible := false;
          dcard3.CardPosition := 0;
+         cards2Pl[3]:=true;
       end;
    end;
 end;
@@ -727,6 +748,7 @@ begin
       if dcard4.hp <= 0 then begin
          card2_4.visible := false;
          dcard4.CardPosition := 0;
+         cards2Pl[4]:=true;
       end;
    end;
 end;
@@ -767,6 +789,11 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card1.cardIsPlaced := true;
      card1.CardPosition := 1;
+
+     lockedslots1[cards1Pos[1]] := false;
+     cards1Pl[1] := true;
+     cardsPull;
+
   end
   else if (card1_1.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) and not (card1.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_1.Top := cardSlot6.top;
@@ -776,6 +803,9 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card1.cardIsPlaced := true;
      card1.CardPosition := 2;
+
+     lockedslots1[cards1Pos[1]] := false;
+     cardsPull;
   end
   else if (card1_1.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) and not (card1.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_1.Top := cardSlot7.top;
@@ -785,6 +815,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card1.cardIsPlaced := true;
      card1.CardPosition := 3;
+
+     lockedslots1[cards1Pos[1]] := false;
+     cards1Pl[1] := true;
+     cardsPull;
   end
   else if (card1_1.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) and not (card1.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_1.Top := cardSlot8.top;
@@ -794,6 +828,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card1.cardIsPlaced := true;
      card1.CardPosition := 4;
+
+     lockedslots1[cards1Pos[1]] := false;
+     cards1Pl[1] := true;
+     cardsPull;
   end
   else begin
    card1_1.Left:=oldleft;
@@ -833,6 +871,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card2.cardIsPlaced := true;
      card2.CardPosition := 1;
+
+     lockedslots1[cards1Pos[2]] := false;
+     cards1Pl[2] := true;
+     cardsPull;
   end
   else if (card1_2.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) and not (card2.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_2.Top := cardSlot6.top;
@@ -842,6 +884,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card2.cardIsPlaced := true;
      card2.CardPosition := 2;
+
+     lockedslots1[cards1Pos[2]] := false;
+     cards1Pl[2] := true;
+     cardsPull;
   end
   else if (card1_2.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) and not (card2.cardIsPlaced = true )AND (player2hasturn)  then begin
      card1_2.Top := cardSlot7.top;
@@ -851,6 +897,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card2.cardIsPlaced := true;
      card2.CardPosition := 3;
+
+     lockedslots1[cards1Pos[2]] := false;
+     cards1Pl[2] := true;
+     cardsPull;
   end
   else if (card1_2.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) and not (card2.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_2.Top := cardSlot8.top;
@@ -860,6 +910,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card2.cardIsPlaced := true;
      card2.CardPosition := 4;
+
+     lockedslots1[cards1Pos[2]] := false;
+     cards1Pl[2] := true;
+     cardsPull;
   end
   else begin
    card1_2.Left:=oldleft;
@@ -898,6 +952,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card3.cardIsPlaced := true;
      card3.CardPosition := 1;
+
+     lockedslots1[cards1Pos[3]] := false;
+     cards1Pl[3] := true;
+     cardsPull;
   end
   else if (card1_3.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) and not (card3.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_3.Top := cardSlot6.top;
@@ -907,6 +965,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card3.cardIsPlaced := true;
      card3.CardPosition := 2;
+
+     lockedslots1[cards1Pos[3]] := false;
+     cards1Pl[3] := true;
+     cardsPull;
   end
   else if (card1_3.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) and not (card3.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_3.Top := cardSlot7.top;
@@ -916,6 +978,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card3.cardIsPlaced := true;
      card3.CardPosition := 3;
+
+     lockedslots1[cards1Pos[3]] := false;
+     cards1Pl[3] := true;
+     cardsPull;
   end
   else if (card1_3.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) and not (card3.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_3.Top := cardSlot8.top;
@@ -925,6 +991,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card3.cardIsPlaced := true;
      card3.CardPosition := 4;
+
+     lockedslots1[cards1Pos[3]] := false;
+     cards1Pl[3] := true;
+     cardsPull;
   end
   else begin
    card1_3.Left:=oldleft;
@@ -964,6 +1034,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card4.cardIsPlaced := true;
      card4.CardPosition := 1;
+
+     lockedslots1[cards1Pos[4]] := false;
+     cards1Pl[4] := true;
+     cardsPull;
   end
   else if (card1_4.top <= (cardSlot6.top + cardSlot6.height)) and (lockedfield[2] = false) and not (card4.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_4.Top := cardSlot6.top;
@@ -973,6 +1047,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card4.cardIsPlaced := true;
      card4.CardPosition := 2;
+
+     lockedslots1[cards1Pos[4]] := false;
+     cards1Pl[4] := true;
+     cardsPull;
   end
   else if (card1_4.top <= (cardSlot7.top + cardSlot7.height)) and (lockedfield[3] = false) and not (card4.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_4.Top := cardSlot7.top;
@@ -982,6 +1060,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card4.cardIsPlaced := true;
      card4.CardPosition := 3;
+
+     lockedslots1[cards1Pos[4]] := false;
+     cards1Pl[4] := true;
+     cardsPull;
   end
   else if (card1_4.top <= (cardSlot8.top + cardSlot8.height)) and (lockedfield[4] = false) and not (card4.cardIsPlaced = true ) AND (player2hasturn) then begin
      card1_4.Top := cardSlot8.top;
@@ -991,6 +1073,10 @@ begin
      mana1.text := 'Mana: ' + inttostr(player1.Mana);
      card4.cardIsPlaced := true;
      card4.CardPosition := 4;
+
+     lockedslots1[cards1Pos[4]] := false;
+     cards1Pl[4] := true;
+     cardsPull;
   end
   else begin
    card1_4.Left:=oldleft;
@@ -1030,6 +1116,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard1.cardIsPlaced := true;
      dcard1.CardPosition := 1;
+
+     lockedslots2[cards2Pos[1]] := false;
+     cards2Pl[1] := true;
+     cardsPull;
   end
   else if ((card2_1.top + card2_1.height) >= cardSlot2.top) and (lockedfield[6] = false) and not (dcard1.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_1.Top := cardSlot2.top;
@@ -1039,6 +1129,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard1.cardIsPlaced := true;
      dcard1.CardPosition := 2;
+
+     lockedslots2[cards2Pos[1]] := false;
+     cards2Pl[1] := true;
+     cardsPull;
   end
   else if ((card2_1.top + card2_1.height)  >= cardSlot3.top) and (lockedfield[7] = false) and not (dcard1.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_1.Top := cardSlot3.top;
@@ -1048,6 +1142,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard1.cardIsPlaced := true;
      dcard1.CardPosition := 3;
+
+     lockedslots2[cards2Pos[1]] := false;
+     cards2Pl[1] := true;
+     cardsPull;
   end
   else if ((card2_1.top + card2_1.height) >= cardSlot4.top) and (lockedfield[8] = false) and not (dcard1.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_1.Top := cardSlot4.top;
@@ -1057,6 +1155,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard1.cardIsPlaced := true;
      dcard1.CardPosition := 4;
+
+     lockedslots2[cards2Pos[1]] := false;
+     cards2Pl[1] := true;
+     cardsPull;
   end
   else begin
    card2_1.Left:=oldleft;
@@ -1095,6 +1197,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard2.cardIsPlaced := true;
      dcard2.CardPosition := 1;
+
+     lockedslots2[cards2Pos[2]] := false;
+     cards2Pl[2] := true;
+     cardsPull;
   end
   else if ((card2_2.top + card2_2.height) >= cardSlot2.top) and (lockedfield[6] = false) and not (dcard2.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_2.Top := cardSlot2.top;
@@ -1105,6 +1211,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard2.cardIsPlaced := true;
      dcard2.CardPosition := 2;
+
+     lockedslots2[cards2Pos[2]] := false;
+     cards2Pl[2] := true;
+     cardsPull;
   end
   else if ((card2_2.top + card2_2.height) >= cardSlot3.top) and (lockedfield[7] = false) and not (dcard2.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_2.Top := cardSlot3.top;
@@ -1114,6 +1224,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard2.cardIsPlaced := true;
      dcard2.CardPosition := 3;
+
+     lockedslots2[cards2Pos[2]] := false;
+     cards2Pl[2] := true;
+     cardsPull;
   end
   else if ((card2_2.top + card2_2.height) >= cardSlot4.top) and (lockedfield[8] = false) and not (dcard2.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_2.Top := cardSlot4.top;
@@ -1123,13 +1237,16 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard2.cardIsPlaced := true;
      dcard2.CardPosition := 4;
+
+     lockedslots2[cards2Pos[2]] := false;
+     cards2Pl[2] := true;
+     cardsPull;
   end
   else begin
    card2_2.Left:=oldleft;
    card2_2.top:=oldtop;
   end;
 end;
-
 
 //Karte 2.3
 
@@ -1163,6 +1280,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard3.cardIsPlaced := true;
      dcard3.CardPosition := 1;
+
+     lockedslots2[cards2Pos[3]] := false;
+     cards2Pl[3] := true;
+     cardsPull;
   end
   else if ((card2_3.top + card2_3.height) >= cardSlot2.top) and (lockedfield[6] = false) and not (dcard3.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_3.Top := cardSlot2.top;
@@ -1172,6 +1293,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard3.cardIsPlaced := true;
      dcard3.CardPosition := 2;
+
+     lockedslots2[cards2Pos[3]] := false;
+     cards2Pl[3] := true;
+     cardsPull;
   end
   else if ((card2_3.top + card2_3.height) >= cardSlot3.top) and (lockedfield[7] = false) and not (dcard3.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_3.Top := cardSlot3.top;
@@ -1181,6 +1306,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard3.cardIsPlaced := true;
      dcard3.CardPosition := 3;
+
+     lockedslots2[cards2Pos[3]] := false;
+     cards2Pl[3] := true;
+     cardsPull;
   end
   else if ((card2_3.top + card2_3.height) >= cardSlot4.top) and (lockedfield[8] = false) and not (dcard3.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_3.Top := cardSlot4.top;
@@ -1190,6 +1319,12 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard3.cardIsPlaced := true;
      dcard3.CardPosition := 4;
+
+     lockedslots2[cards2Pos[3]] := false;
+     cards2Pl[3] := true;
+     cardsPull;
+
+
   end
   else begin
    card2_3.Left:=oldleft;
@@ -1229,6 +1364,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard4.cardIsPlaced := true;
      dcard4.CardPosition := 1;
+
+     lockedslots2[cards2Pos[4]] := false;
+     cards2Pl[4] := true;
+     cardsPull;
   end
   else if ((card2_4.top + card2_4.height) >= cardSlot2.top) and (lockedfield[6] = false) and not (dcard4.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_4.Top := cardSlot2.top;
@@ -1238,6 +1377,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard4.cardIsPlaced := true;
      dcard4.CardPosition := 2;
+
+     lockedslots2[cards2Pos[4]] := false;
+     cards2Pl[4] := true;
+     cardsPull;
   end
   else if ((card2_4.top + card2_4.height) >= cardSlot3.top) and (lockedfield[7] = false) and not (dcard4.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_4.Top := cardSlot3.top;
@@ -1247,6 +1390,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard4.cardIsPlaced := true;
      dcard4.CardPosition := 3;
+
+     lockedslots2[cards2Pos[4]] := false;
+     cards2Pl[4] := true;
+     cardsPull;
   end
   else if ((card2_4.top + card2_4.height) >= cardSlot4.top) and (lockedfield[8] = false) and not (dcard4.cardIsPlaced = true ) AND (player1hasturn) then begin
      card2_4.Top := cardSlot4.top;
@@ -1256,6 +1403,10 @@ begin
      mana2.text := 'Mana: ' + inttostr(player2.Mana);
      dcard4.cardIsPlaced := true;
      dcard4.CardPosition := 4;
+
+     lockedslots2[cards2Pos[4]] := false;
+     cards2Pl[4] := true;
+     cardsPull;
   end
   else begin
    card2_4.Left:=oldleft;
@@ -1292,7 +1443,7 @@ begin
        player2hasturn := true;
        player1hasturn := false;
 
-       attackButton.top := turn.top + pullCards.height;
+       attackButton.top := turn.top + turn.height;
     end
     else if player2hasturn = true then begin
 
@@ -1300,7 +1451,7 @@ begin
        player1hasturn := true;
        player2hasturn := false;
 
-       attackButton.top := turn.top - pullCards.height;
+       attackButton.top := turn.top - turn.height;
        attackButton.left := turn.left;
        attackButton.height := turn.height;
        attackButton.width := turn.width;
