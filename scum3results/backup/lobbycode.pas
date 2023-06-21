@@ -45,6 +45,7 @@ implementation
 
 procedure Tlobby.FormCreate(Sender: TObject);
 begin
+    background.sendtoback;
 
     lobby.show;
 

@@ -1,4 +1,4 @@
-unit Playerclass;
+unit playerclass;
 
 {$mode ObjFPC}{$H+}
 

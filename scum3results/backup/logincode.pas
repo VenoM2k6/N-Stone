@@ -79,11 +79,6 @@ implementation
 procedure Tloginmenu.FormCreate(Sender: TObject);
 begin
 
-  close;
-
-
-
-
   relativePath := '\Playerdata.txt';
   currentPath := GetCurrentDir;
   absolutePath :=  currentPath + relativePath;
@@ -171,22 +166,23 @@ begin
   password2.top := signup2.top;
   password2.font.size := 15;
 
-  classchooser1.Items.Add('Mage');
-  classchooser1.Items.Add('Ranged');
-  classchooser1.Items.Add('Melee');
+  classchooser1.Items.Add('Holy&Demons');
+  classchooser1.Items.Add('Beasts');
+  classchooser1.Items.Add('Humans');
 
   classchooser2.Items := classchooser1.Items;
+
   classchooser1.height := name1.height;
   classchooser1.width := name1.width;
   classchooser1.left := name1.left;
-  classchooser1.top := password1.top + loginmenu.height div 8;
+  classchooser1.top := password1.top + loginmenu.height div 7;
   classchooser1.Font.Size := 15;
 
   classchooser2.height := name2.height;
   classchooser2.height := name2.height;
   classchooser2.width := name2.width;
   classchooser2.left := name2.left;
-  classchooser2.top := password2.top + loginmenu.height div 8;
+  classchooser2.top := classchooser1.top;
   classchooser2.Font.Size := 15;
 
   finish1.height := password1.height;
@@ -199,10 +195,6 @@ begin
   finish2.left := password2.left;
   finish2.top := classchooser2.top + classchooser2.Height;
 
- { closeButton.height := name1.height;
-  closeButton.width := name1.width;
-  closeButton.left := loginmenu.width div 2 - closeButton.width div 2;
-  closeButton.top := finish1.top; }
 end;
 //Automatisches Textlöschen beim anklicken
 procedure Tloginmenu.name1Click(Sender: TObject);
